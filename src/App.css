@@ -35,14 +35,71 @@
 
 .page-header {
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
   border-bottom: 3px rgb(28, 158, 209) solid;
-  margin-bottom: 20px;
+  margin-bottom: 2vw;
+  margin-top: 1vw !important;
+}
+
+.page-header .diamond {
+  margin-right: 0px !important;
+}
+
+.page-header .diamond strong {
+  font-family: HND, sans-serif;
+  font-size: 3.5vw;
+  line-height: 2.8vw;
+  display: inline-block;
+}
+
+.page-header .diamond img {
+  position: absolute;
+  top: 1vw;
+  height: 8.75vw;
+}
+
+.page-header .follow {
+  text-align: right;
+  position: relative;
+  line-height: 0.8vw;
+}
+
+.page-header .follow a {
+  text-decoration: none;
+}
+
+.page-header .follow strong {
+  font-family: HND, sans-serif;
+  font-size: 3.5vw;
+  line-height: 2.8vw !important;
+  text-align : right;
+  color : white;
+}
+
+.page-header .follow img {
+  position : absolute;
+  display: inline-block;
+  height: 8.25vw;
+  right: calc(22vw + var(--bs-gutter-x,.75rem));
+}
+
+.question {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 1.5vw !important;
+  margin-bottom: 1.5vw !important;
+}
+/* 
+.page-header .gem i {
+  vertical-align: middle;
+  font-size: 7em;
 }
 
 .page-header .gem {
   text-align: left;
-  font-size: 7rem;
 }
 
 .page-header .gem i, .page-header .twitter i, .page-footer i {
@@ -51,26 +108,54 @@
 
 .page-header .twitter {
   text-align: right;
-  font-size: 7rem;
-}
+  font-size: 7em;
+} */
 
 .page-footer {
   text-align: center;
-  font-size: 7rem;
+}
+
+.page-footer img {
+  height: 8.75vw !important;
 }
 
 .text-right {
   text-align: right;
 }
 
-.margin-top-30 {
+/* .margin-top-30 {
   margin-top : 30px;
-}
+} */
 
-p {
-  font-size: 1.3em;
+p, ul li {
+  font-size: 1.3vw;
 }
 
 .sub-title {
-  font-size: 1.5em;
+  font-size: 1.5vw;
+}
+
+.timeline {
+  text-align: center;
+}
+
+.timeline .time-one {
+  width: 19.999%;
+  /* display: inline-block; */
+  float: left;
+}
+
+.timeline .time-one h3{
+  font-size: 1.2vw;
+  word-break: break-all;
+}
+
+.timeline .time-one p {
+  font-size: 1vw;
+  word-break: break-all;
+}
+
+.timeline .time-one img {
+  display: block;
+  width: 100%;
 }
