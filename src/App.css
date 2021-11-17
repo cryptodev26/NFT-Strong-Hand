@@ -1,0 +1,76 @@
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-header {
+  padding: 0;
+  margin: 0;
+  border-bottom: 3px rgb(28, 158, 209) solid;
+  margin-bottom: 20px;
+}
+
+.page-header .gem {
+  text-align: left;
+  font-size: 7rem;
+}
+
+.page-header .gem i, .page-header .twitter i, .page-footer i {
+  color: rgb(28, 158, 209);
+}
+
+.page-header .twitter {
+  text-align: right;
+  font-size: 7rem;
+}
+
+.page-footer {
+  text-align: center;
+  font-size: 7rem;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.margin-top-30 {
+  margin-top : 30px;
+}
+
+p {
+  font-size: 1.3em;
+}
+
+.sub-title {
+  font-size: 1.5em;
+}
