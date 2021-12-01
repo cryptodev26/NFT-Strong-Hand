@@ -1,0 +1,51 @@
+.header {
+    border-bottom: 3px solid #31d2f7;
+    padding-top: 15px;
+    display: flex;
+    color: azure;
+    .diamond {
+        flex: 1 0 auto;
+        display: -webkit-inline-box;
+        ul {
+            font : {
+                size: 40px;
+                weight: 600;
+            }
+            line-height: 42px;
+            padding-left: 0;
+            margin-bottom: 0;
+            li {
+                list-style: none;
+            }
+        }
+        img {
+            margin-top: 5px;
+            width: 100px;
+        }
+    }
+
+    .links {
+        ul {
+            margin-bottom: 0;
+            font : {
+                size: 40px;
+                weight: 600;
+            }
+            line-height: 42px;
+            padding-left: 0;
+            margin-bottom: 0;
+            li {
+                list-style: none;
+                text-align: right;
+                a {
+                    text-decoration: none;
+                    color: azure;
+                }
+                .active {
+                    color: white;
+                    font-weight: 700;
+                }
+            }
+        }   
+    }
+}
