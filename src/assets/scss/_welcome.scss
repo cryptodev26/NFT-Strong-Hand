@@ -1,0 +1,98 @@
+.welcome {
+  .page-header {
+    padding: 0;
+    border-bottom: 3px rgb(28, 158, 209) solid;
+    margin-bottom: 2vw;
+    margin-top: 1vw !important;
+    .diamond {
+      margin-right: 0px !important;
+      strong {
+        font-family: HND, sans-serif;
+        font-size: 3.5vw;
+        line-height: 2.8vw;
+        display: inline-block;
+      }
+      img {
+        position: absolute;
+        top: 1vw;
+        height: 8.75vw;
+      }
+    }
+
+    .follow {
+      text-align: right;
+      position: relative;
+      line-height: 0.8vw;
+      a {
+        text-decoration: none;
+      }
+      strong {
+        font-family: HND, sans-serif;
+        font-size: 3.5vw;
+        line-height: 2.8vw !important;
+        text-align : right;
+        color : white;
+      }
+      img {
+        position : absolute;
+        display: inline-block;
+        height: 8.25vw;
+        right: calc(22vw + var(--bs-gutter-x,.75rem));
+      }
+    }
+  }
+  .question {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  p {
+    margin-top: 1.5vw !important;
+    margin-bottom: 1.5vw !important;
+  }
+
+  .page-footer {
+    text-align: center;
+    img {
+      height: 8.75vw !important;
+    }
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  p {
+    font-size: 1.3vw;
+  }
+
+  ul {
+    li {
+      font-size: 1.3vw;
+    }
+  }
+
+  .sub-title {
+    font-size: 1.5vw;
+  }
+
+  .timeline {
+    text-align: center;
+    .time-one {
+      width: 19.999%;
+      float: left;
+      h3{
+        font-size: 1.2vw;
+        word-break: break-all;
+      }
+      p {
+        font-size: 1vw;
+        word-break: break-all;
+      }
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
