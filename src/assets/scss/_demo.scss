@@ -1,0 +1,52 @@
+.demo {
+    .content {
+        font-size: 1.25rem;
+        font-weight: 450;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        .title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        ul {
+            margin-bottom: 0;
+        }
+    }
+
+    .page-header {
+        display: flex;
+        .follow {
+            flex: 1 0 auto;
+            // display: inline-flex;
+            display: flex;
+            img {
+                width: 3rem;
+                height: 3rem;
+            }
+            .title {
+                line-height: 1.5rem;
+                padding-left: 10px;
+            }
+            margin-bottom: 2rem;
+            width: 50%;
+        }
+        .content {
+            flex: 0 0 auto;
+            text-align: right;
+            button {
+
+            }
+        }
+    }
+
+    .update {
+        padding: 5px;
+        color: black;
+        background-color: #77def5;
+        margin-top: 2.5rem;
+    }
+
+    .collector {
+        text-align: center;
+    }
+}
