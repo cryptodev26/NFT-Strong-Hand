@@ -1,13 +1,39 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
+import Web3 from 'web3';
 
 class Demo extends React.Component {
     constructor () {
         super();
+        this.state = {
+            wallet : '0x0000000000000000000000000',
+            button : 'I AM READY TO FIND OUT'
+        }
+        this.connect = this.connect.bind(this)
     }
 
+    async connect () {
+        if(window.ethereum) {
+            window.web3 = new Web3(window.ethereum)
+            await window.ethereum.enable()
+            const accounts = await window.web3.eth.getAccounts()
+            this.setState({
+                wallet: accounts[0]
+            })
+
+        } else if(window.web3) {
+            window.web3 = new Web3(window.web3.currentProvider) 
+            const accounts = await window.web3.eth.getAccounts()
+            this.setState({
+                wallet: accounts[0]
+            })
+        } else {
+            window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        }
+
+    }
     render () {
         return (
             <div>
@@ -22,70 +48,208 @@ class Demo extends React.Component {
                                 <span className="title">&nbsp;FOLLOW US NOT TO MISS LAUNCH</span>
                             </div>
                             <div className="connect">
-                                <Button variant="outline-primary">Connect Wallet</Button>
+                                <Button variant="outline-primary" className="title" onClick={this.connect}>Connect Wallet</Button>
                             </div>
                         </div>
-                        <p className="content">
-                            <span className="title">CONCEPT:</span> “Diamond Hands Passport”, will be a single standard for checking track record of a 
-                            collector in flipping or diamond-handing projects, based on community-defined criteria, allowing 
-                            projects to identify true collectors as well as collectors get easier whitelisting for projects.
-                        </p>
-                        <p className="content update">
-                            <span className="title">UPDATE:</span> Passport calculation logic is ready to be demoed for a small group of pilot users. Please 
-                            reach out on Twitter if you would like to gain access for testing and feedback
-                        </p>
+                        <div className="content">
+                            <p className="title">
+                            Please connect Wallet and click below to test out the algorithm
+                            </p>
+                        </div>
                         <div className="content collector">
                             <p className="title">
                                 WHAT KIND OF COLLECTOR HANDS DO YOU HAVE?
                             </p>
+                            <img src={require('../../assets/img/timeline.png').default} />
                         </div>
-                        <p className="content">
-                            <span className="title">What does it mean for a collector?</span> You will be able to generate a “Diamond Hands Passport” that will verify how 
-                            loyal you have been to the projects you have minted, or you have purchased by holding their tokens / NFTs. This 
-                            passport will over time allow you to gain direct access to whitelists of important projects that would like to 
-                            assemble a real community of holders. You will avoid silly “hoops” through which projects currently make you 
-                            jump through (retweet competitions, discord shilling, assignments etc.)
-                        </p>
-                        <p className="content">
-                            <span className="title">What does it mean for a flipper?</span> Umm… yeah, I think you know the answer. On the bright side, the passport is 
-                            dynamic and you can start to improve your behaviors and eventually see the “Diamond Hands” rating on your 
-                            passport.
-                        </p>
-                        <p className="content">
-                            <span className="title">What does it mean for a project?</span> By vetting collectors using “Diamond Hands Passport” you are essentially 
-                            guaranteed to white-list wallets that have behaved loyally and held projects they have invested in. The passport 
-                            provides sufficient criteria for you to be able to define a fairly narrow filter (e.g. “wallets that have sold less than 
-                            5% of minted tokens within first 1 month from mint” could be one criteria you define or “wallets that have minted 
-                            more than 100 NFTs and have never sold a single one” can be another).
-                        </p>
-                        <p className="content">
-                            <span className="title">What is the DAO about?</span> Once initial concept is released we would like to hand-over the definition of “Diamond 
-                            Hands” levels to the holders of passports (we will look into a separate governance token later to potentially 
-                            introduce additional parties to the table, such as projects implementing passport-based whitelists). This means the 
-                            community will decide whether, say, having held a CryptoPunk for a year or having sold less than 10% of minted 
-                            tokens is sufficient to be in the “Diamond Hands” league.
-                        </p>
                         <div className="content">
-                            <span className="title">How will it work?</span> The Passport will be an NFT which will be minted on this site. NFT metadata will 
-                            represent key parameters of your collecting behavior, such as:
-                            <ul>
-                                <li>How often do you mint projects</li>
-                                <li>How long do you hold your mints</li>
-                                <li>Do you sell minted projects at a loss</li>
-                                <li>What share of minted projects you hold to date</li>
-                                <li>etc.</li>
-                            </ul>
-                            Furthermore, the Passport will contain an X/100 overall rating, defined based on algorithm agreed by 
-                            the DAO (initially set by the project team) and a categorization into 5 categories of hands (with 
-                            corresponding mini-artworks which you can also use as your banner or avatar background if you wish). 
-                            NFT will be tied to your wallet address and projects will be able to check this metadata to white-list 
-                            only collectors that have truly demonstrated loyal behaviors to projects they have minted.
+                            <p className="title text-center">Wallet connected : {this.state.wallet}</p>
                         </div>
-                        <p className="content">
-                            <span className="title">Will it cost something?</span> Initial mint will be free, but over time mint fee will increase as adoption of the 
-                            Passport increases, representing increasing utility of the Passport. Hence, we would recommend you 
-                            to sign up soon!
-                        </p>
+                        <div className="content text-center find-out">
+                            <Button variant="outline-primary">
+                                {this.state.button}
+                            </Button>
+                        </div>
+                        <div className="content result-header">
+                            <div className="progress-diamond">
+                                <img src={require('../../assets/img/diamond.svg').default} />
+                                <img src={require('../../assets/img/diamond.svg').default} />
+                                <img src={require('../../assets/img/diamond.svg').default} />
+                                <img src={require('../../assets/img/diamond.svg').default} />
+                                <img src={require('../../assets/img/diamond.svg').default} />
+                            </div>
+                            <h1 className="text-center">STRONG HANDS! (85/100)</h1>
+                        </div>
+                        <div className="content horizontal-line">
+                            <div className="line">
+                                {/* <img src={require('../../assets/img/1.svg').default} /> */}
+                            </div>
+                        </div>
+                        <Row className="content output">
+                            <Col lg="6" md="12" sm="12" xs="12">
+                                <p className="title">NFT MINTING</p>
+                                <div className="find">
+                                    <label>#NFTS MINTED:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">155</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% OF MINTED SOLD:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">20%</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% SOLD WITHIN 1 WEEK:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">10%</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% SOLD BELOW MINT:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">30%</Button>
+                                    </div>
+                                </div>
+                            </Col> 
+                            <Col lg="6" md="12" sm="12" xs="12">
+                                <p className="title">NFT PURCHASING</p>
+                                <div className="find">
+                                    <label>#NFTS BOUGHT:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">155</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% OF BOUGHT SOLD:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">20%</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% SOLD WITHIN 1 WEEK:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">10%</Button>
+                                    </div>
+                                </div>
+                                <div className="find">
+                                    <label>% SOLD BELOW BUY:</label>
+                                    <div className="rating">
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                        <div className="column"></div>
+                                    </div>
+                                    <div className="result">
+                                        <Button variant="secondary">30%</Button>
+                                    </div>
+                                </div>
+                            </Col> 
+                        </Row>
+                        <Row className="content bonus">
+                            <Col lg="12" md="12" sm="12" xs="12">
+                                <p className="title">BONUS</p>
+                                <div className="bonus-info">
+                                    <label>BLUE CHIPS:</label>
+                                    <div className="chips">
+                                        <div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" />
+                                                <label title="" for="formBasicCheckbox" class="form-check-label">CRYPTOPUNK</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" />
+                                                <label title="" for="formBasicCheckbox" class="form-check-label">AUTOGLYPH</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" />
+                                                <label title="" for="formBasicCheckbox" class="form-check-label">BAYC</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" />
+                                                <label title="" for="formBasicCheckbox" class="form-check-label">FIDENZA</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="age">
+                                        <label>WALLET AGE: </label>
+                                        <div>
+                                            <Button variant="secondary">150</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row className="content passport">
+                            <Col lg="12" md="12" sm="12" xs="12">
+                                <p className="title">YOUR PASSPORT AVATAR</p>
+                                <div className="avatar-section">
+                                    <div className="avatar-panel">
+                                        <p className="sub-title">STRONG HANDS! (85/100)</p>
+                                        <div className="progress-diamond">
+                                            <img src={require('../../assets/img/diamond.svg').default} />
+                                            <img src={require('../../assets/img/diamond.svg').default} />
+                                            <img src={require('../../assets/img/diamond.svg').default} />
+                                            <img src={require('../../assets/img/diamond.svg').default} />
+                                            <img src={require('../../assets/img/diamond.svg').default} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
                     </div>
                     <Footer />
                 </Container>
