@@ -16,26 +16,34 @@ class Demo extends React.Component {
     constructor () {
         super();
         this.state = {
-            walletAddress : '0x0000000000000000000000000',
-            button : 'I AM READY TO FIND OUT',
-            mintNumber    : 0,
-            mintSold      : 0,
-            mintSoldWeek  : 0,
-            mintSoldBelow : 0,
-            buynumber     : 0,
-            buySold       : 0,
-            buySoldWeek   : 0,
-            buySoldBelow  : 0,
-            walletAge     : 0,
-            cryptpunk     : 0,
-            bayc          : 0,
-            autography    : 0,
-            artblock      : 0,
-            walletValue   : 0,
-            baycstate     : false,
-            cryptopunkstate: false,
-            artblockstate : false,
-            autographystate : false,
+            walletAddress               : '0x0000000000000000000000000',
+            button                      : 'I AM READY TO FIND OUT',
+            mintNumber                  : 0,
+            mintNumberContainer         : [],
+            mintSold                    : 0,
+            mintSoldContainer           : [],
+            mintSoldWeek                : 0,
+            mintSoldWeekContainer       : [],
+            mintSoldBelow               : 0,
+            mintSoldBelowContainer      : [],
+            buynumber                   : 0,
+            buynumberContainer          : [],
+            buySold                     : 0,
+            buySoldContainer            : [],
+            buySoldWeek                 : 0,
+            buySoldWeekContainer        : [],
+            buySoldBelow                : 0,
+            buySoldBelowContainer       : [],
+            walletAge                   : 0,
+            cryptpunk                   : 0,
+            bayc                        : 0,
+            autography                  : 0,
+            artblock                    : 0,
+            walletValue                 : 0,
+            baycstate                   : false,
+            cryptopunkstate             : false,
+            artblockstate               : false,
+            autographystate             : false,
         }
     }
 
@@ -90,11 +98,31 @@ class Demo extends React.Component {
         rate_mint_week_sold : ((mint_to_sale_days.length/mint_array.length) * 100).toFixed(2),
         rate_below_mint     : ((sold_below_mint / mint_array.length) * 100).toFixed(2)
         }
+        let mintNumberContainer = [], 
+            mintSoldContainer = [], 
+            mintSoldWeekContainer = [],
+            mintSoldBelowContainer = []
+        for(let i = 0; i < Math.ceil(result.mint_count / 20); i ++ ) {
+            mintNumberContainer.push(<div className="column"></div>)
+        }
+        for(let i = 0; i < Math.ceil(result.rate_mint_sold / 20); i ++ ) {
+            mintSoldContainer.push(<div className="column"></div>)
+        }
+        for(let i = 0; i < Math.ceil(result.rate_mint_week_sold / 20); i ++ ) {
+            mintSoldWeekContainer.push(<div className="column"></div>)
+        }
+        for(let i = 0; i < Math.ceil(result.rate_below_mint / 20); i ++ ) {
+            mintSoldBelowContainer.push(<div className="column"></div>)
+        }
         this.setState({
         mintNumber : result.mint_count,
         mintSold : result.rate_mint_sold,
         mintSoldWeek : result.rate_mint_week_sold,
-        mintSoldBelow : result.rate_below_mint
+        mintSoldBelow : result.rate_below_mint,
+        mintNumberContainer : mintNumberContainer,
+        mintSoldContainer : mintSoldContainer,
+        mintSoldWeekContainer : mintSoldWeekContainer,
+        mintSoldBelowContainer : mintSoldBelowContainer,
         })
         return result
     }
@@ -138,11 +166,31 @@ class Demo extends React.Component {
             rate_mint_week_sold : ((buy_to_sale_days.length/buy_array.length) * 100).toFixed(2),
             rate_below_mint     : ((sold_below_buy / buy_array.length) * 100).toFixed(2)
         }
+        let buynumberContainer = [], 
+            buySoldContainer = [],
+            buySoldWeekContainer = [],
+            buySoldBelowContainer = []
+        for ( let i = 0; i < Math.ceil(result.bought_count / 20); i ++ ) {
+            buynumberContainer.push(<div className="column"></div>)
+        }
+        for ( let i = 0; i < Math.ceil(result.rate_mint_sold / 20); i ++ ) {
+            buySoldContainer.push(<div className="column"></div>)
+        }
+        for ( let i = 0; i < Math.ceil(result.rate_below_mint / 20); i ++ ) {
+            buySoldWeekContainer.push(<div className="column"></div>)
+        }
+        for ( let i = 0; i < Math.ceil(result.rate_mint_week_sold / 20); i ++ ) {
+            buySoldBelowContainer.push(<div className="column"></div>)
+        }
         this.setState({
             buynumber : result.bought_count ,
+            buynumberContainer : buynumberContainer,
             buySold : result.rate_mint_sold,
+            buySoldContainer : buySoldContainer,
             buySoldBelow : result.rate_mint_week_sold,
-            buySoldWeek : result.rate_below_mint
+            buySoldBelowContainer : buySoldBelowContainer,
+            buySoldWeek : result.rate_below_mint,
+            buySoldWeekContainer : buySoldWeekContainer
         })
         return result
     }
@@ -276,6 +324,10 @@ class Demo extends React.Component {
     //         window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     //     }
     // }
+
+    async connect () {
+
+    }
     
     render () {
         return (
@@ -335,11 +387,12 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>#NFTS MINTED:</label>
                                         <div className="rating">
+                                            {/* <div className="column"></div>
                                             <div className="column"></div>
                                             <div className="column"></div>
                                             <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            <div className="column"></div> */}
+                                            {this.state.mintNumberContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.mintNumber}</Button>
@@ -349,11 +402,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% OF MINTED SOLD:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.mintSoldContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.mintSold}%</Button>
@@ -362,11 +411,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% SOLD WITHIN 1 WEEK:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.mintSoldWeekContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.mintSoldWeek}%</Button>
@@ -375,11 +420,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% SOLD BELOW MINT:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.mintSoldBelowContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.mintSoldBelow}%</Button>
@@ -391,11 +432,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>#NFTS BOUGHT:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.buynumberContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.buynumber}</Button>
@@ -404,11 +441,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% OF BOUGHT SOLD:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.buySoldContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.buySold}%</Button>
@@ -417,11 +450,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% SOLD WITHIN 1 WEEK:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.buySoldWeekContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.buySoldWeek}%</Button>
@@ -430,11 +459,7 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>% SOLD BELOW BUY:</label>
                                         <div className="rating">
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
+                                            {this.state.buySoldBelowContainer}
                                         </div>
                                         <div className="result">
                                             <Button variant="secondary">{this.state.buySoldBelow}%</Button>
@@ -449,23 +474,23 @@ class Demo extends React.Component {
                                         <label>BLUE CHIPS:</label>
                                         <div className="chips">
                                             <div>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked = {this.state.cryptopunkstate}/>
-                                                    <label title="" for="formBasicCheckbox" class="form-check-label" >CRYPTOPUNK</label>
+                                                <div className="form-check">
+                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.cryptopunkstate} />
+                                                    <label className="form-check-label" >CRYPTOPUNK</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked = {this.state.autographystate}/>
-                                                    <label title="" for="formBasicCheckbox" class="form-check-label" >AUTOGLYPH</label>
+                                                <div className="form-check">
+                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.autographystate}/>
+                                                    <label className="form-check-label" >AUTOGLYPH</label>
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked = {this.state.baycstate} />
-                                                    <label title="" for="formBasicCheckbox" class="form-check-label">BAYC</label>
+                                                <div className="form-check">
+                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.baycstate} />
+                                                    <label className="form-check-label">BAYC</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked = {this.state.artblockstate}/>
-                                                    <label title="" for="formBasicCheckbox" class="form-check-label" >FIDENZA</label>
+                                                <div className="form-check">
+                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.artblockstate}/>
+                                                    <label className="form-check-label" >FIDENZA</label>
                                                 </div>
                                             </div>
                                         </div>
