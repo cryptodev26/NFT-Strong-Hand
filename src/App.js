@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/contact" element={<Contact />} />

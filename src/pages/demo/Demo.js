@@ -476,6 +476,7 @@ class Demo extends React.Component {
                         <div className="content text-center find-out">
                             {this.state.button}
                         </div>
+                        { !this.state.start ?
                         <div>
                             <div className="content result-header">
                                 <div className="progress-diamond">
@@ -631,7 +632,8 @@ class Demo extends React.Component {
                                     </div>
                                 </Col>
                             </Row>
-                        </div>
+                        </div> : ''
+                        }
                     </div>
                     <hr />
                     <Footer />
