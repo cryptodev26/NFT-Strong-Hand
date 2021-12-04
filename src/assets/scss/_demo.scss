@@ -78,32 +78,32 @@
         }
         .timeline {
             .line {
-                height: 4vw;
+                height: 4rem;
                 background-color: #27a6c3;
-                border-radius: 0.5vw;
+                border-radius: 0.5rem;
                 display: flex;
                 .line-circle {
                     display: inline-block;
                     width: 19.99%;
                     text-align: center;
                     position: relative;
-                    padding: 0.5vw;
+                    padding: 0.5rem;
                     .circle-in {
                         background-color: #041623;
-                        height: 5vw;
-                        bottom: -0.5vw;
-                        left: 7.5vw;
-                        width: 5vw;
+                        height: 5rem;
+                        bottom: -0.5rem;
+                        left: 6rem;
+                        width: 5rem;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 101;
                     }
                     .circle-out {
                         background-color: #27a6c3;
-                        height: 6vw;
-                        bottom: -1vw;
-                        left: 7vw;
-                        width: 6vw;
+                        height: 6rem;
+                        bottom: -1rem;
+                        left: 5.5rem;
+                        width: 6rem;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 100;
@@ -111,10 +111,10 @@
                     .circle-select {
                         display: none;
                         background-color: #27a6c3;
-                        height: 4vw;
+                        height: 4rem;
                         bottom: 0vw;
-                        left: 8vw;
-                        width: 4vw;
+                        left: 6.5rem;
+                        width: 4rem;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 102;
