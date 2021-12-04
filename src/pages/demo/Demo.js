@@ -399,13 +399,12 @@ class Demo extends React.Component {
                             </p>
                             <img src={require('../../assets/img/timeline.png').default} />
                         </div>
-                        <div className="content">
+                        <div className="content wallet">
                             <p className="title text-center">Wallet connected : {this.state.walletAddress}</p>
                         </div>
                         <div className="content text-center find-out">
                             {this.state.button}
                         </div>
-                        {!this.state.start ?
                         <div>
                             <div className="content result-header">
                                 <div className="progress-diamond">
@@ -562,7 +561,6 @@ class Demo extends React.Component {
                                 </Col>
                             </Row>
                         </div>
-                        : <div style={{ height: '20vw'}}></div>}
                     </div>
                     <hr />
                     <Footer />

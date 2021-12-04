@@ -446,7 +446,7 @@
         }
     
         .page-header {
-            display: flex;
+            display: inline-block;
             .follow {
                 flex: 1 0 auto;
                 // display: inline-flex;
@@ -464,7 +464,7 @@
             }
             .connect {
                 flex: 0 0 auto;
-                text-align: right;
+                text-align: center;
                 button {
                     font-size: 1.25rem;
                     font-weight: 700;
@@ -477,6 +477,11 @@
                 }
     
             }
+        }
+
+        .wallet {
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     
         .find-out {
@@ -496,7 +501,7 @@
             .progress-diamond {
                 text-align: center;
                 img {
-                    width: 5vw;
+                    width: 2rem;
                     margin: 1vw;
                     opacity: 0.6;
                 }
@@ -515,32 +520,42 @@
     
         .output {
             .find {
-                display: flex;
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 1rem;
                 label {
-                    width: 50%;
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
                     margin: auto;
+                    margin-bottom: 0.5rem;
                 }
                 .rating {
-                    flex: 0 0 auto;
-                    width: 35%;
+                    display: inline-flex;
+                    position: relative;
+                    width: 60%;
+                    bottom: -0.9rem;
                     padding-top: 0.25vw;
                     padding-bottom: 0.25vw;
                     .column {
-                        display: inline-block;
-                        width: 0.8vw;
+                        display: inline-table;
+                        width: 5.8vw;
                         border-radius: 0.1vw;
-                        height: 100%;
-                        margin-left: 0.4vw;
+                        height: 2.5rem;
+                        margin-left: 3.4vw;
                         margin-right: 0.4vw;
-                        background-color: #77def5;
+                        background-color: #77def5
                     }
                 }
                 .result {
+                    display: inline-flex;
                     padding: 0.2vw;
-                    width: 25%;
+                    width: 40%;
                     text-align: center;
                     button {
-                        width: 50%;
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                         background-color:#c8c7c5;
                         color: black;
                     }
@@ -550,39 +565,51 @@
     
         .bonus {
             .bonus-info {
-                display: flex;
+                display: inline-block;
+                width: 100%;
                 label {
-                    width: 25%;
+                    width: 100%;
+                    text-align: center;
                 }
                 .chips {
-                    width: 62.5%;
-                    display:-webkit-flex;
-                    .form-check {
-                        min-height: 2.5rem;
-                        margin-left: 1vw;
-                        .form-check-input {
-                            width: 2rem;
-                            height: 2rem;
-                            background-color: #77def5;
-                        }
-                        .form-check-label {
-                            padding-left: 1vw;
-                        }
-                        label {
-                            white-space: nowrap;
+                    width: 100%;
+                    display:inline-block;
+                    div {
+                        display: inline-block;
+                        .form-check {
+                            display: inline-flex;
+                            padding-right: 1vw;
+                            width: 49.99%;
+                            min-height: 2.5rem;
+                            margin-left: 1vw;
+                            .form-check-input {
+                                width: 2rem;
+                                height: 2rem;
+                                background-color: #77def5;
+                            }
+                            .form-check-label {
+                                text-align: left;
+                                display: inline;
+                                padding-left: 1vw;
+                            }
+                            label {
+                                white-space: nowrap;
+                            }
                         }
                     }
                 }
                 .age {
-                    width: 25%;
-                    display: flex;
+                    padding-top: 2vw;
+                    width: 100%;
+                    display: inline-block;
                     label {
-                        width: 50%;
-                        text-align: right;
+                        width: 100%;
+                        text-align: center;
                     }
                     div {
-                        width: 50%;
+                        width: 100%;
                         text-align: center;
+
                         button {
                             width: 50%;
                             background-color:#c8c7c5;
@@ -596,10 +623,8 @@
         .passport {
             .avatar-section {
                 .avatar-panel {
-                    width: 40vw;
+                    width: 100%;
                     margin: auto;
-                    height: 30vw;
-                    position: relative;
                     border: 1px #c8c7c5 solid;
                     .sub-title {
                         margin-top: 1.5rem;
@@ -608,13 +633,9 @@
                         font-weight: 700;
                     }
                     .progress-diamond {
-                        position: absolute;
-                        bottom: 0;
-                        // left: calc(20vw - (5.4vw * 5 / 2));
-                        left: 6.5vw;
                         text-align: center;
                         img {
-                            width: 5vw;
+                            width: 2rem;
                             margin: 0.2vw;
                             opacity: 0.6;
                         }
