@@ -328,16 +328,22 @@ class Demo extends React.Component {
             }
         }
         let resultImage = ''
+        let timeLineHtml = document.getElementsByClassName('circle-select');
         if(value <= 100 && value >= 80) {
             resultImage = <img src={require('../../assets/img/tangsten.svg').default} />
+            timeLineHtml[4].style.display = 'block'
         } else if(value < 80 && value >= 60) {
             resultImage = <img src={require('../../assets/img/diamondhand.svg').default} />
+            timeLineHtml[3].style.display = 'block'
         } else if (value < 60 && value >= 40) {
             resultImage = <img src={require('../../assets/img/stronghand.svg').default} />
+            timeLineHtml[2].style.display = 'block'
         } else if(value < 40 && value >= 20) {
             resultImage = <img src={require('../../assets/img/weakhand.svg').default} />
+            timeLineHtml[1].style.display = 'block'
         } else {
             resultImage = <img src={require('../../assets/img/paper.svg').default} />
+            timeLineHtml[0].style.display = 'block'
         }
         this.setState({
             start : false,
@@ -397,7 +403,72 @@ class Demo extends React.Component {
                             <p className="title">
                                 WHAT KIND OF COLLECTOR HANDS DO YOU HAVE?
                             </p>
-                            <img src={require('../../assets/img/timeline.png').default} />
+                            <div className="timeline">
+                                <div className="line">
+                                    <div className="line-circle">
+                                        <div className="circle-in"></div>
+                                        <div className="circle-out"></div>
+                                        <div className="circle-select"></div>
+                                    </div>
+                                    <div className="line-circle">
+                                        <div className="circle-in"></div>
+                                        <div className="circle-out"></div>
+                                        <div className="circle-select"></div>
+                                    </div>
+                                    <div className="line-circle">
+                                        <div className="circle-in"></div>
+                                        <div className="circle-out"></div>
+                                        <div className="circle-select"></div>
+                                    </div>
+                                    <div className="line-circle">
+                                        <div className="circle-in"></div>
+                                        <div className="circle-out"></div>
+                                        <div className="circle-select"></div>
+                                    </div>
+                                    <div className="line-circle">
+                                        <div className="circle-in"></div>
+                                        <div className="circle-out"></div>
+                                        <div className="circle-select"></div>
+                                    </div>
+                                </div>
+                                <div className="line-graph">
+                                    <div className="one-hand">
+                                        <div className="hand-image">
+                                            <img src={require('../../assets/img/paper.svg').default} />
+                                        </div>
+                                        <div className="hand-title">PAPER-HANDS</div>
+                                        <div className="description">"I flip... mostly at a loss"</div>
+                                    </div>
+                                    <div className="one-hand">
+                                        <div className="hand-image">
+                                            <img src={require('../../assets/img/weakhand.svg').default} />
+                                        </div>
+                                        <div className="hand-title">WEAK-HANDS</div>
+                                        <div className="description">"I sell when I need liq... which is almost always"</div>
+                                    </div>
+                                    <div className="one-hand">
+                                        <div className="hand-image">
+                                            <img src={require('../../assets/img/stronghand.svg').default} />
+                                        </div>
+                                        <div className="hand-title">STRONG-HANDS</div>
+                                        <div className="description">"I hold... but I do take profits when I can"</div>
+                                    </div>
+                                    <div className="one-hand">
+                                        <div className="hand-image">
+                                            <img src={require('../../assets/img/diamondhand.svg').default} />
+                                        </div>
+                                        <div className="hand-title">DIAMOND-HANDS</div>
+                                        <div className="description">"I hold... even in the brutal bear market"</div>
+                                    </div>
+                                    <div className="one-hand">
+                                        <div className="hand-image">
+                                            <img src={require('../../assets/img/tangsten.svg').default} />
+                                        </div>
+                                        <div className="hand-title">TUNGSTEN-HANDS</div>
+                                        <div className="description">"I... am either ultimate chad or just lost my ledger pass phrase"</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="content wallet">
                             <p className="title text-center">Wallet connected : {this.state.walletAddress}</p>

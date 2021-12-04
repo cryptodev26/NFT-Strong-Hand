@@ -68,6 +68,77 @@
         .title {
             text-align: center;
         }
+        .hand-title {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .description {
+            font-size: 0.9rem;
+        }
+        .timeline {
+            .line {
+                height: 4vw;
+                background-color: #27a6c3;
+                border-radius: 0.5vw;
+                display: flex;
+                .line-circle {
+                    display: inline-block;
+                    width: 19.99%;
+                    text-align: center;
+                    position: relative;
+                    padding: 0.5vw;
+                    .circle-in {
+                        background-color: #041623;
+                        height: 5vw;
+                        bottom: -0.5vw;
+                        left: 7.5vw;
+                        width: 5vw;
+                        position: absolute;
+                        border-radius: 50%;
+                        z-index: 101;
+                    }
+                    .circle-out {
+                        background-color: #27a6c3;
+                        height: 6vw;
+                        bottom: -1vw;
+                        left: 7vw;
+                        width: 6vw;
+                        position: absolute;
+                        border-radius: 50%;
+                        z-index: 100;
+                    }
+                    .circle-select {
+                        display: none;
+                        background-color: #27a6c3;
+                        height: 4vw;
+                        bottom: 0vw;
+                        left: 8vw;
+                        width: 4vw;
+                        position: absolute;
+                        border-radius: 50%;
+                        z-index: 102;
+                    }
+                }
+            }
+            .line-graph {
+                display: flex;
+                .one-hand {
+                    width: 19.99%;
+                    display: inline-block;
+                    padding: 0.5rem;
+                    .hand-image {
+                        height: 10rem;
+                        text-align: center;
+                        img {
+                            height: 100%;
+                            max-width: 100%;
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .find-out {
@@ -278,6 +349,79 @@
             }
         }
 
+        .collector {
+            .hand-title {
+                text-align: center;
+                font-size: 1.5vw;
+                font-weight: 700;
+            }
+            .description {
+                font-size: 1.35vw;
+            }
+            .timeline {
+                .line {
+                    height: 4vw;
+                    background-color: #27a6c3;
+                    border-radius: 0.5vw;
+                    display: flex;
+                    .line-circle {
+                        display: inline-block;
+                        width: 19.99%;
+                        text-align: center;
+                        position: relative;
+                        padding: 0.5vw;
+                        .circle-in {
+                            background-color: #041623;
+                            height: 5vw;
+                            bottom: -0.5vw;
+                            left: 7.5vw;
+                            width: 5vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 101;
+                        }
+                        .circle-out {
+                            background-color: #27a6c3;
+                            height: 6vw;
+                            bottom: -1vw;
+                            left: 7vw;
+                            width: 6vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 100;
+                        }
+                        .circle-select {
+                            background-color: #27a6c3;
+                            height: 4vw;
+                            bottom: 0vw;
+                            left: 8vw;
+                            width: 4vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 102;
+                        }
+                    }
+                }
+                .line-graph {
+                    display: flex;
+                    .one-hand {
+                        width: 19.99%;
+                        display: inline-block;
+                        padding: 0.5rem;
+                        .hand-image {
+                            height: 15vw;
+                            text-align: center;
+                            img {
+                                height: 100%;
+                                max-width: 100%;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .find-out {
             button {
                 font-size: 1.25rem;
@@ -476,6 +620,79 @@
                     background-color: transparent;
                 }
     
+            }
+        }
+
+        .collector {
+            .hand-title {
+                text-align: center;
+                font-size: 1.5vw;
+                font-weight: 700;
+            }
+            .description {
+                font-size: 1.35vw;
+            }
+            .timeline {
+                .line {
+                    height: 4vw;
+                    background-color: #27a6c3;
+                    border-radius: 0.5vw;
+                    display: flex;
+                    .line-circle {
+                        display: inline-block;
+                        width: 19.99%;
+                        text-align: center;
+                        position: relative;
+                        padding: 0.5vw;
+                        .circle-in {
+                            background-color: #041623;
+                            height: 5vw;
+                            bottom: -0.5vw;
+                            left: 7.5vw;
+                            width: 5vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 101;
+                        }
+                        .circle-out {
+                            background-color: #27a6c3;
+                            height: 6vw;
+                            bottom: -1vw;
+                            left: 7vw;
+                            width: 6vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 100;
+                        }
+                        .circle-select {
+                            background-color: #27a6c3;
+                            height: 4vw;
+                            bottom: 0vw;
+                            left: 8vw;
+                            width: 4vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 102;
+                        }
+                    }
+                }
+                .line-graph {
+                    display: flex;
+                    .one-hand {
+                        width: 19.99%;
+                        display: inline-block;
+                        padding: 0.5rem;
+                        .hand-image {
+                            height: 15vw;
+                            text-align: center;
+                            img {
+                                height: 100%;
+                                max-width: 100%;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
             }
         }
 
