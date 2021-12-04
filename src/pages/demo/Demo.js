@@ -24,7 +24,7 @@ class Demo extends React.Component {
         super();
         this.state = {
             walletAddress               : '0x0000000000000000000000000',
-            button                      : <Button variant="outline-primary" onClick={()=> this.checkAll("0x2a4fab37ba4eda353f46a1155ac762f71eadca02")}>
+            button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
                                             I AM READY TO FIND OUT</Button>,
             start                       : true,
             resultImage                 : '',
@@ -63,25 +63,67 @@ class Demo extends React.Component {
     }
 
     async checkAll(address){
+        address = address.toLowerCase()
         this.setState({
             button : <Button variant="outline-primary">Please wait...</Button>
         })
-        try {
+        let checkstate = await this.simpleCheck(address)
+        console.log(checkstate)
+        if (!checkstate){
+            this.setState({
+                button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
+                                                I AM READY TO FIND OUT</Button>,
+                resultImage                 : '',
+                start                       : false,  
+                diamond                     : [],
+                mintNumber                  : 0,
+                mintNumberContainer         : [],
+                mintSold                    : 0,
+                mintSoldContainer           : [],
+                mintSoldWeek                : 0,
+                mintSoldWeekContainer       : [],
+                mintSoldBelow               : 0,
+                mintSoldBelowContainer      : [],
+                buynumber                   : 0,
+                buynumberContainer          : [],
+                buySold                     : 0,
+                buySoldContainer            : [],
+                buySoldWeek                 : 0,
+                buySoldWeekContainer        : [],
+                buySoldBelow                : 0,
+                buySoldBelowContainer       : [],
+                walletAge                   : 0,
+                cryptpunk                   : 0,
+                bayc                        : 0,
+                autography                  : 0,
+                artblock                    : 0,
+                walletValue                 : 0,
+            })
+            return
+        } else {
             await this.mintCheck(address)
             await this.buyCheck(address)
             await this.holdCheck(address)
             await this.walletAge(address)
             await this.valueCheck()
-            this.setState({
-                button : ''
-            })
-        } catch {
-            this.setState({
-                button : <Button variant="outline-primary" onClick={()=> this.checkAll("0x2a4fab37ba4eda353f46a1155ac762f71eadca02")}>Error
-                            </Button>
-            })
         }
     }
+
+    async simpleCheck(address){
+        let checkstate = true
+        const options = { 
+            chain: "eth", 
+            address: address ,
+            limit: "10000" 
+        };
+        let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
+
+        if (transfersNFT.result.length == 0){        
+            checkstate = false
+        }
+        return checkstate
+    }
+
 
     async mintCheck(address){
         let mint_to_sale_days = []
@@ -353,30 +395,26 @@ class Demo extends React.Component {
         })
     }
 
-    // async connect () {
-    //     if(window.ethereum) {
-    //         window.web3 = new Web3(window.ethereum)
-    //         await window.ethereum.enable()
-    //         const accounts = await window.web3.eth.getAccounts()
-    //         this.setState({
-    //             wallet: accounts[0]
-    //         })
-
-    //     } else if(window.web3) {
-    //         window.web3 = new Web3(window.web3.currentProvider) 
-    //         const accounts = await window.web3.eth.getAccounts()
-    //         this.setState({
-    //             wallet: accounts[0]
-    //         })
-    //     } else {
-    //         window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-    //     }
-    // }
-
     async connect () {
+        if(window.ethereum) {
+            window.web3 = new Web3(window.ethereum)
+            await window.ethereum.enable()
+            const accounts = await window.web3.eth.getAccounts()
+            this.setState({
+                walletAddress: accounts[0]
+            })
 
+        } else if(window.web3) {
+            window.web3 = new Web3(window.web3.currentProvider) 
+            const accounts = await window.web3.eth.getAccounts()
+            this.setState({
+                walletAddress: accounts[0]
+            })
+        } else {
+            window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        }
     }
-    
+
     render () {
         return (
             <div>
