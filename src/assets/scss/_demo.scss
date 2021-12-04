@@ -177,8 +177,8 @@
             .avatar-panel {
                 width: 40vw;
                 margin: auto;
-                height: 30vw;
-                position: relative;
+                // height: 30vw;
+                // position: relative;
                 border: 1px #c8c7c5 solid;
                 .sub-title {
                     margin-top: 1.5rem;
@@ -187,10 +187,10 @@
                     font-weight: 700;
                 }
                 .progress-diamond {
-                    position: absolute;
-                    bottom: 0;
+                    // position: absolute;
+                    // bottom: 0;
                     // left: calc(20vw - (5.4vw * 5 / 2));
-                    left: 6.5vw;
+                    // left: 6.5vw;
                     text-align: center;
                     img {
                         width: 5vw;

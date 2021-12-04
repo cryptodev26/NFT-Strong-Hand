@@ -11,13 +11,24 @@ const serverUrl = "https://s6gixbeuyfx4.usemoralis.com:2053/server";
 const appId = "PISnhV8BumWtmODGXXq6xyhwf62lA3YZqLHra34j";
 
 const etherWeb3    = new Web3("https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161");
+const handTypes = [
+    'PAPER HANDS',
+    'WEAK HANDS',
+    'STRONG HANDS',
+    'DIAMOND HANDS',
+    'TUNGSTEN HANDS'
+]
 
 class Demo extends React.Component {
     constructor () {
         super();
         this.state = {
             walletAddress               : '0x0000000000000000000000000',
-            button                      : 'I AM READY TO FIND OUT',
+            button                      : <Button variant="outline-primary" onClick={()=> this.checkAll("0x2a4fab37ba4eda353f46a1155ac762f71eadca02")}>
+                                            I AM READY TO FIND OUT</Button>,
+            start                       : true,
+            resultImage                 : '',
+            diamond                     : [],
             mintNumber                  : 0,
             mintNumberContainer         : [],
             mintSold                    : 0,
@@ -52,11 +63,24 @@ class Demo extends React.Component {
     }
 
     async checkAll(address){
-        await this.mintCheck(address)
-        await this.buyCheck(address)
-        await this.holdCheck(address)
-        await this.walletAge(address)
-        await this.valueCheck()
+        this.setState({
+            button : <Button variant="outline-primary">Please wait...</Button>
+        })
+        try {
+            await this.mintCheck(address)
+            await this.buyCheck(address)
+            await this.holdCheck(address)
+            await this.walletAge(address)
+            await this.valueCheck()
+            this.setState({
+                button : ''
+            })
+        } catch {
+            this.setState({
+                button : <Button variant="outline-primary" onClick={()=> this.checkAll("0x2a4fab37ba4eda353f46a1155ac762f71eadca02")}>Error
+                            </Button>
+            })
+        }
     }
 
     async mintCheck(address){
@@ -124,7 +148,6 @@ class Demo extends React.Component {
         mintSoldWeekContainer : mintSoldWeekContainer,
         mintSoldBelowContainer : mintSoldBelowContainer,
         })
-        return result
     }
 
     async buyCheck(address){
@@ -192,7 +215,6 @@ class Demo extends React.Component {
             buySoldWeek : result.rate_below_mint,
             buySoldWeekContainer : buySoldWeekContainer
         })
-        return result
     }
 
     async holdCheck(address){
@@ -258,7 +280,6 @@ class Demo extends React.Component {
         artblockstate : artblockstate,
         autographystate : autographystate
     })
-    return result
     }
 
     async walletAge(address){
@@ -281,8 +302,6 @@ class Demo extends React.Component {
         }
     }
 
-
-
     async valueCheck(){
         let value = (Math.min(100, 
         (
@@ -300,8 +319,31 @@ class Demo extends React.Component {
             this.state.bayc * 10
         )
         )).toFixed(0)
+        let diamond = []
+        for(let i = 0; i < 5; i ++ ) {
+            if(i < Math.ceil(value / 20)) {
+                diamond.push(<img src={require('../../assets/img/diamond.svg').default} style={{ opacity : 1 }} />)
+            } else {
+                diamond.push(<img src={require('../../assets/img/diamond.svg').default} />)
+            }
+        }
+        let resultImage = ''
+        if(value <= 100 && value >= 80) {
+            resultImage = <img src={require('../../assets/img/tangsten.svg').default} />
+        } else if(value < 80 && value >= 60) {
+            resultImage = <img src={require('../../assets/img/diamondhand.svg').default} />
+        } else if (value < 60 && value >= 40) {
+            resultImage = <img src={require('../../assets/img/stronghand.svg').default} />
+        } else if(value < 40 && value >= 20) {
+            resultImage = <img src={require('../../assets/img/weakhand.svg').default} />
+        } else {
+            resultImage = <img src={require('../../assets/img/paper.svg').default} />
+        }
         this.setState({
-        walletValue : value
+            start : false,
+            walletValue : value,
+            diamond : diamond,
+            resultImage: resultImage
         })
     }
 
@@ -358,23 +400,23 @@ class Demo extends React.Component {
                             <img src={require('../../assets/img/timeline.png').default} />
                         </div>
                         <div className="content">
-                            <p className="title text-center">Wallet connected : {this.state.wallet}</p>
+                            <p className="title text-center">Wallet connected : {this.state.walletAddress}</p>
                         </div>
                         <div className="content text-center find-out">
-                            <Button variant="outline-primary" onClick={()=> this.checkAll("0x2a4fab37ba4eda353f46a1155ac762f71eadca02")}>
-                                {this.state.button}
-                            </Button>
+                            {this.state.button}
                         </div>
+                        {!this.state.start ?
                         <div>
                             <div className="content result-header">
                                 <div className="progress-diamond">
-                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                    <img src={require('../../assets/img/diamond.svg').default} />
+                                    {(this.state.diamond.length) ? (this.state.diamond) :
+                                    (<div><img src={require('../../assets/img/diamond.svg').default} />
+                                        <img src={require('../../assets/img/diamond.svg').default} />
+                                        <img src={require('../../assets/img/diamond.svg').default} />
+                                        <img src={require('../../assets/img/diamond.svg').default} />
+                                        <img src={require('../../assets/img/diamond.svg').default} /></div>)}
                                 </div>
-                                <h1 className="text-center">STRONG HANDS! ({this.state.walletValue}/100)</h1>
+                                <h1 className="text-center">{handTypes[Math.ceil(this.state.walletValue / 20)] ? handTypes[Math.ceil(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
                             </div>
                             <div className="content horizontal-line">
                                 <div className="line">
@@ -387,11 +429,6 @@ class Demo extends React.Component {
                                     <div className="find">
                                         <label>#NFTS MINTED:</label>
                                         <div className="rating">
-                                            {/* <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div>
-                                            <div className="column"></div> */}
                                             {this.state.mintNumberContainer}
                                         </div>
                                         <div className="result">
@@ -475,21 +512,21 @@ class Demo extends React.Component {
                                         <div className="chips">
                                             <div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.cryptopunkstate} />
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.cryptopunkstate} />
                                                     <label className="form-check-label" >CRYPTOPUNK</label>
                                                 </div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.autographystate}/>
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.autographystate}/>
                                                     <label className="form-check-label" >AUTOGLYPH</label>
                                                 </div>
                                             </div>
                                             <div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.baycstate} />
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.baycstate} />
                                                     <label className="form-check-label">BAYC</label>
                                                 </div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" defaultChecked={this.state.artblockstate}/>
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.artblockstate}/>
                                                     <label className="form-check-label" >FIDENZA</label>
                                                 </div>
                                             </div>
@@ -508,19 +545,24 @@ class Demo extends React.Component {
                                     <p className="title">YOUR PASSPORT AVATAR</p>
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
-                                            <p className="sub-title">STRONG HANDS! ({this.state.walletValue}/100)</p>
+                                            <p className="sub-title">{handTypes[Math.ceil(this.state.walletValue / 20)] ? handTypes[Math.ceil(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</p>
+                                            <div className="result-image">
+                                                {this.state.resultImage}
+                                            </div>
                                             <div className="progress-diamond">
-                                                <img src={require('../../assets/img/diamond.svg').default} />
-                                                <img src={require('../../assets/img/diamond.svg').default} />
-                                                <img src={require('../../assets/img/diamond.svg').default} />
-                                                <img src={require('../../assets/img/diamond.svg').default} />
-                                                <img src={require('../../assets/img/diamond.svg').default} />
+                                                {(this.state.diamond.length) ? (this.state.diamond) :
+                                                (<div><img src={require('../../assets/img/diamond.svg').default} />
+                                                    <img src={require('../../assets/img/diamond.svg').default} />
+                                                    <img src={require('../../assets/img/diamond.svg').default} />
+                                                    <img src={require('../../assets/img/diamond.svg').default} />
+                                                    <img src={require('../../assets/img/diamond.svg').default} /></div>)}
                                             </div>
                                         </div>
                                     </div>
                                 </Col>
                             </Row>
                         </div>
+                        : <div style={{ height: '20vw'}}></div>}
                     </div>
                     <Footer />
                 </Container>
