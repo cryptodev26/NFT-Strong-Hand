@@ -2,6 +2,9 @@
     text-align: center;
 }
 .demo {
+    hr {
+        margin-bottom: 0;
+    }
     font-family: 'Roboto', sans-serif;
     color: #c8c7c5;
     label {
@@ -21,6 +24,9 @@
         }
         img {
             width: 100%;
+        }
+        .sub-panel {
+            margin-top: 2rem;
         }
     }
 
@@ -55,6 +61,12 @@
                 background-color: transparent;
             }
 
+        }
+    }
+
+    .collector {
+        .title {
+            text-align: center;
         }
     }
 
@@ -115,6 +127,7 @@
                 }
             }
             .result {
+                // border-left: 1px solid #35424b;
                 padding: 0.2vw;
                 width: 15%;
                 text-align: center;
@@ -134,7 +147,7 @@
                 width: 25%;
             }
             .chips {
-                width: 62.5%;
+                width: 45%;
                 display:-webkit-flex;
                 .form-check {
                     min-height: 2.5rem;
@@ -153,7 +166,7 @@
                 }
             }
             .age {
-                width: 25%;
+                width: 42.5%;
                 display: flex;
                 label {
                     width: 50%;
@@ -384,8 +397,6 @@
                 .avatar-panel {
                     width: 40vw;
                     margin: auto;
-                    height: 30vw;
-                    position: relative;
                     border: 1px #c8c7c5 solid;
                     .sub-title {
                         margin-top: 1.5rem;
@@ -394,10 +405,6 @@
                         font-weight: 700;
                     }
                     .progress-diamond {
-                        position: absolute;
-                        bottom: 0;
-                        // left: calc(20vw - (5.4vw * 5 / 2));
-                        left: 6.5vw;
                         text-align: center;
                         img {
                             width: 5vw;

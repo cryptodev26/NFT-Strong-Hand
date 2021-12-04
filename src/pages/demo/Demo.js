@@ -418,13 +418,13 @@ class Demo extends React.Component {
                                 </div>
                                 <h1 className="text-center">{handTypes[Math.ceil(this.state.walletValue / 20)] ? handTypes[Math.ceil(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
                             </div>
-                            <div className="content horizontal-line">
+                            {/* <div className="content horizontal-line">
                                 <div className="line">
-                                    {/* <img src={require('../../assets/img/1.svg').default} /> */}
                                 </div>
-                            </div>
+                            </div> */}
+                            <hr />
                             <Row className="content output">
-                                <Col lg="6" md="12" sm="12" xs="12">
+                                <Col lg="6" md="12" sm="12" xs="12" className="sub-panel">
                                     <p className="title">NFT MINTING</p>
                                     <div className="find">
                                         <label>#NFTS MINTED:</label>
@@ -464,7 +464,7 @@ class Demo extends React.Component {
                                         </div>
                                     </div>
                                 </Col> 
-                                <Col lg="6" md="12" sm="12" xs="12">
+                                <Col lg="6" md="12" sm="12" xs="12" className="sub-panel">
                                     <p className="title">NFT PURCHASING</p>
                                     <div className="find">
                                         <label>#NFTS BOUGHT:</label>
@@ -505,28 +505,28 @@ class Demo extends React.Component {
                                 </Col> 
                             </Row>
                             <Row className="content bonus">
-                                <Col lg="12" md="12" sm="12" xs="12">
+                                <Col lg="12" md="12" sm="12" xs="12" className="sub-panel">
                                     <p className="title">BONUS</p>
                                     <div className="bonus-info">
                                         <label>BLUE CHIPS:</label>
                                         <div className="chips">
                                             <div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" checked={this.state.cryptopunkstate} />
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.cryptopunkstate} readOnly />
                                                     <label className="form-check-label" >CRYPTOPUNK</label>
                                                 </div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" checked={this.state.autographystate}/>
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.autographystate} readOnly />
                                                     <label className="form-check-label" >AUTOGLYPH</label>
                                                 </div>
                                             </div>
                                             <div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" checked={this.state.baycstate} />
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.baycstate} readOnly />
                                                     <label className="form-check-label">BAYC</label>
                                                 </div>
                                                 <div className="form-check">
-                                                    <input type="checkbox" className="form-check-input" checked={this.state.artblockstate}/>
+                                                    <input type="checkbox" className="form-check-input" checked={this.state.artblockstate} readOnly />
                                                     <label className="form-check-label" >FIDENZA</label>
                                                 </div>
                                             </div>
@@ -541,7 +541,7 @@ class Demo extends React.Component {
                                 </Col>
                             </Row>
                             <Row className="content passport">
-                                <Col lg="12" md="12" sm="12" xs="12">
+                                <Col lg="12" md="12" sm="12" xs="12" className="sub-panel">
                                     <p className="title">YOUR PASSPORT AVATAR</p>
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
@@ -564,6 +564,7 @@ class Demo extends React.Component {
                         </div>
                         : <div style={{ height: '20vw'}}></div>}
                     </div>
+                    <hr />
                     <Footer />
                 </Container>
             </div>
