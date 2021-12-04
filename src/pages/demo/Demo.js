@@ -106,6 +106,9 @@ class Demo extends React.Component {
             await this.holdCheck(address)
             await this.walletAge(address)
             await this.valueCheck()
+            this.setState({
+                button : []
+            })
         }
     }
 
@@ -168,16 +171,16 @@ class Demo extends React.Component {
             mintSoldContainer = [], 
             mintSoldWeekContainer = [],
             mintSoldBelowContainer = []
-        for(let i = 0; i < Math.ceil(result.mint_count / 20); i ++ ) {
+        for(let i = 0; i < Math.ceil((result.mint_count > 100 ? 100 :  result.mint_count) / 20); i ++ ) {
             mintNumberContainer.push(<div className="column"></div>)
         }
-        for(let i = 0; i < Math.ceil(result.rate_mint_sold / 20); i ++ ) {
+        for(let i = 0; i < Math.ceil((result.rate_mint_sold > 100 ? 100 : result.rate_mint_sold) / 20); i ++ ) {
             mintSoldContainer.push(<div className="column"></div>)
         }
-        for(let i = 0; i < Math.ceil(result.rate_mint_week_sold / 20); i ++ ) {
+        for(let i = 0; i < Math.ceil((result.rate_mint_week_sold > 100 ? 100 : result.rate_mint_week_sold) / 20); i ++ ) {
             mintSoldWeekContainer.push(<div className="column"></div>)
         }
-        for(let i = 0; i < Math.ceil(result.rate_below_mint / 20); i ++ ) {
+        for(let i = 0; i < Math.ceil((result.rate_below_mint > 100 ? 100 : result.rate_below_mint)  / 20); i ++ ) {
             mintSoldBelowContainer.push(<div className="column"></div>)
         }
         this.setState({
@@ -235,16 +238,16 @@ class Demo extends React.Component {
             buySoldContainer = [],
             buySoldWeekContainer = [],
             buySoldBelowContainer = []
-        for ( let i = 0; i < Math.ceil(result.bought_count / 20); i ++ ) {
+        for ( let i = 0; i < Math.ceil((result.bought_count > 100 ? 100 : result.bought_count) / 20); i ++ ) {
             buynumberContainer.push(<div className="column"></div>)
         }
-        for ( let i = 0; i < Math.ceil(result.rate_mint_sold / 20); i ++ ) {
+        for ( let i = 0; i < Math.ceil((result.rate_mint_sold > 100 ? 100 : result.rate_mint_sold) / 20); i ++ ) {
             buySoldContainer.push(<div className="column"></div>)
         }
-        for ( let i = 0; i < Math.ceil(result.rate_below_mint / 20); i ++ ) {
+        for ( let i = 0; i < Math.ceil((result.rate_below_mint > 100 ? 100 : result.rate_below_mint) / 20); i ++ ) {
             buySoldWeekContainer.push(<div className="column"></div>)
         }
-        for ( let i = 0; i < Math.ceil(result.rate_mint_week_sold / 20); i ++ ) {
+        for ( let i = 0; i < Math.ceil((result.rate_mint_week_sold > 100 ? 100 : result.rate_mint_week_sold) / 20); i ++ ) {
             buySoldBelowContainer.push(<div className="column"></div>)
         }
         this.setState({
@@ -525,7 +528,7 @@ class Demo extends React.Component {
                                         <img src={require('../../assets/img/diamond.svg').default} />
                                         <img src={require('../../assets/img/diamond.svg').default} /></div>)}
                                 </div>
-                                <h1 className="text-center">{handTypes[Math.ceil(this.state.walletValue / 20)] ? handTypes[Math.ceil(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
+                                <h1 className="text-center">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
                             </div>
                             {/* <div className="content horizontal-line">
                                 <div className="line">
@@ -654,7 +657,7 @@ class Demo extends React.Component {
                                     <p className="title">YOUR PASSPORT AVATAR</p>
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
-                                            <p className="sub-title">{handTypes[Math.ceil(this.state.walletValue / 20)] ? handTypes[Math.ceil(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</p>
+                                            <p className="sub-title">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</p>
                                             <div className="result-image">
                                                 {this.state.resultImage}
                                             </div>
