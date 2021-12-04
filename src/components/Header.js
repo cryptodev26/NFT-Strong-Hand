@@ -35,13 +35,13 @@ class Header extends React.Component {
                     <div className="toggle-collapse">
                         <ul>
                             <li>
-                                <Link to="/home" className={this.state.route == '/home' ? 'active' : ''}>HOME</Link>
+                                <Link to="/home" className={this.state.route === '/home' ? 'active' : ''}>HOME</Link>
                             </li>
                             <li>
-                                <Link to="/demo" className={this.state.route == '/demo' ? 'active' : ''}>DEMO</Link>
+                                <Link to="/demo" className={this.state.route === '/demo' ? 'active' : ''}>DEMO</Link>
                             </li>
                             <li>
-                                <Link to="/contact" className={this.state.route == '/contact' ? 'active' : ''}>CONTACT</Link>
+                                <Link to="/contact" className={this.state.route === '/contact' ? 'active' : ''}>CONTACT</Link>
                             </li>
                         </ul>
                     </div>

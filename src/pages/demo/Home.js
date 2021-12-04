@@ -1,12 +1,10 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 
 class Home extends React.Component {
-    constructor () {
-        super()
-    }
+
     
     render () {
         return (

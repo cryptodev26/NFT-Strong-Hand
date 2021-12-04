@@ -2,10 +2,6 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 
 class Welcome extends React.Component {
-    constructor () {
-        super()
-    }
-
     render () {
         return (
             <div className="welcome">

@@ -3,10 +3,6 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 class Contact extends React.Component {
-    constructor () {
-        super();
-    }
-
     render () {
         return (
             <div>
