@@ -68,12 +68,12 @@ class Demo extends React.Component {
             button : <Button variant="outline-primary">Please wait...</Button>
         })
         let checkstate = await this.simpleCheck(address)
-        console.log(checkstate)
+
         if (!checkstate){
             this.setState({
                 button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
                                                 I AM READY TO FIND OUT</Button>,
-                resultImage                 : '',
+                resultImage                 : <img src={require('../../assets/img/paper.svg').default} />,
                 start                       : false,  
                 diamond                     : [],
                 mintNumber                  : 0,
