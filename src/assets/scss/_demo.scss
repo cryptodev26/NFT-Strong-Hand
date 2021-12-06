@@ -1,6 +1,10 @@
 .text-center {
     text-align: center;
 }
+.container {
+    width: 95% !important;
+    max-width: 100%;
+}
 .demo {
     hr {
         margin-bottom: 0;
@@ -79,9 +83,9 @@
         .timeline {
             padding-top: 2rem;
             .line {
-                height: 4rem;
+                height: 5vw ;
                 background-color: #27a6c3;
-                border-radius: 0.5rem;
+                border-radius: 0.5vw;
                 display: flex;
                 .line-circle {
                     display: inline-block;
@@ -91,20 +95,20 @@
                     padding: 0.5rem;
                     .circle-in {
                         background-color: #041623;
-                        height: 5rem;
-                        bottom: -0.5rem;
-                        left: 6rem;
-                        width: 5rem;
+                        height: 6vw;
+                        bottom: -0.5vw;
+                        left: calc(50% - 3vw);
+                        width: 6vw;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 101;
                     }
                     .circle-out {
                         background-color: #27a6c3;
-                        height: 6rem;
-                        bottom: -1rem;
-                        left: 5.5rem;
-                        width: 6rem;
+                        height: 7vw;
+                        bottom: -1vw;
+                        left: calc(50% - 3.5vw);
+                        width: 7vw;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 100;
@@ -112,10 +116,10 @@
                     .circle-select {
                         display: none;
                         background-color: #27a6c3;
-                        height: 4rem;
+                        height: 5vw;
                         bottom: 0vw;
-                        left: 6.5rem;
-                        width: 4rem;
+                        left: calc(50% - 2.5vw);
+                        width: 5vw;
                         position: absolute;
                         border-radius: 50%;
                         z-index: 102;
@@ -290,6 +294,11 @@
 
 @media only screen and (max-width:991px) and (min-width: 768px) {
 
+    .container {
+        width: 95% !important;
+        max-width: 100% !important;
+    }
+
     .text-center {
         text-align: center;
     }
@@ -375,7 +384,7 @@
                             background-color: #041623;
                             height: 5vw;
                             bottom: -0.5vw;
-                            left: 7.5vw;
+                            left: calc(20% + 3vw);
                             width: 5vw;
                             position: absolute;
                             border-radius: 50%;
@@ -385,7 +394,7 @@
                             background-color: #27a6c3;
                             height: 6vw;
                             bottom: -1vw;
-                            left: 7vw;
+                            left: calc(20% + 2.5vw);
                             width: 6vw;
                             position: absolute;
                             border-radius: 50%;
@@ -395,7 +404,7 @@
                             background-color: #27a6c3;
                             height: 4vw;
                             bottom: 0vw;
-                            left: 8vw;
+                            left: calc(20% + 3.5vw);
                             width: 4vw;
                             position: absolute;
                             border-radius: 50%;
@@ -564,6 +573,12 @@
 }
 
 @media only screen and (max-width: 767px) {
+    
+    .container {
+        width: 95% !important;
+        max-width: 100% !important;
+    }
+
     .text-center {
         text-align: center;
     }
@@ -634,49 +649,6 @@
                 font-size: 1.35vw;
             }
             .timeline {
-                .line {
-                    height: 4vw;
-                    background-color: #27a6c3;
-                    border-radius: 0.5vw;
-                    display: flex;
-                    .line-circle {
-                        display: inline-block;
-                        width: 19.99%;
-                        text-align: center;
-                        position: relative;
-                        padding: 0.5vw;
-                        .circle-in {
-                            background-color: #041623;
-                            height: 5vw;
-                            bottom: -0.5vw;
-                            left: 7.5vw;
-                            width: 5vw;
-                            position: absolute;
-                            border-radius: 50%;
-                            z-index: 101;
-                        }
-                        .circle-out {
-                            background-color: #27a6c3;
-                            height: 6vw;
-                            bottom: -1vw;
-                            left: 7vw;
-                            width: 6vw;
-                            position: absolute;
-                            border-radius: 50%;
-                            z-index: 100;
-                        }
-                        .circle-select {
-                            background-color: #27a6c3;
-                            height: 4vw;
-                            bottom: 0vw;
-                            left: 8vw;
-                            width: 4vw;
-                            position: absolute;
-                            border-radius: 50%;
-                            z-index: 102;
-                        }
-                    }
-                }
                 .line-graph {
                     display: flex;
                     .one-hand {
