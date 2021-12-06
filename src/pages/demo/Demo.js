@@ -519,7 +519,10 @@ class Demo extends React.Component {
                             </div>
                         </div>
                         <div className="content wallet">
-                            <p className="title text-center">Wallet connected : {this.state.walletAddress}</p>
+                            <p className="title text-center">
+                            {this.state.walletAddress ? ('Wallet connected: ' + this.state.walletAddress) 
+                                : ('Wallet not connected')}
+                            </p>
                         </div>
                         <div className="content text-center find-out">
                             {this.state.button}
