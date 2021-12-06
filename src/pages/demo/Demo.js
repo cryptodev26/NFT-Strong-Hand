@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import Web3 from 'web3';
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { exportComponentAsPNG, exportComponentAsJPEG } from "react-component-export-image";
 const Moralis = require('moralis');
 
 
@@ -19,6 +19,7 @@ const handTypes = [
     'TUNGSTEN HANDS'
 ]
 
+let i = 1
 class Demo extends React.Component {
     constructor () {
         super();
@@ -59,6 +60,8 @@ class Demo extends React.Component {
             artblockstate               : false,
             autographystate             : false,
         }
+
+        this.componentRef = React.createRef();
     }
 
     async componentWillMount(){
@@ -78,7 +81,13 @@ class Demo extends React.Component {
                                                 I AM READY TO FIND OUT</Button>,
                 resultImage                 : <img src={require('../../assets/img/paper.svg').default} />,
                 start                       : false,  
-                diamond                     : [],
+                diamond                     : <div>
+                    <img src={require('../../assets/img/diamond.svg').default} style={{ opacity: 1}}/>
+                    <img src={require('../../assets/img/diamond.svg').default} />
+                    <img src={require('../../assets/img/diamond.svg').default} />
+                    <img src={require('../../assets/img/diamond.svg').default} />
+                    <img src={require('../../assets/img/diamond.svg').default} />
+                </div>,
                 mintNumber                  : 0,
                 mintNumberContainer         : [],
                 mintSold                    : 0,
@@ -100,7 +109,7 @@ class Demo extends React.Component {
                 bayc                        : 0,
                 autography                  : 0,
                 artblock                    : 0,
-                walletValue                 : 0,
+                walletValue                 : 1,
             })
             return
         } else {
@@ -425,6 +434,68 @@ class Demo extends React.Component {
         }
     }
 
+    export () {
+        exportComponentAsJPEG(this.componentRef, {
+                fileName : i + '.jpg',
+                html2CanvasOptions: {
+                    backgroundColor : '#041623'
+                }
+            })
+
+        i ++
+        if(i > 0 && i < 21) {
+            this.setState({
+                walletValue :  i,
+                resultImage : <img src={require('../../assets/img/paper.svg').default} />,
+                diamond:<div> <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} /></div>
+            })
+        } else if(i > 20 && i < 41) {
+            this.setState({
+                walletValue :  i,
+                resultImage : <img src={require('../../assets/img/weakhand.svg').default} />,
+                diamond:<div> <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} /></div>
+            })
+        } else if(i > 40 && i < 61) {
+            this.setState({
+                walletValue :  i,
+                resultImage : <img src={require('../../assets/img/stronghand.svg').default} />,
+                diamond:<div> <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default} />
+                <img src={require('../../assets/img/diamond.svg').default} /></div>
+            })
+        } else if(i > 60 && i < 81) {
+            this.setState({
+                walletValue :  i,
+                resultImage : <img src={require('../../assets/img/diamondhand.svg').default} />,
+                diamond:<div> <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default} /></div>
+            })
+        } else if(i > 80 && i < 101) {
+            this.setState({
+                walletValue :  i,
+                resultImage : <img src={require('../../assets/img/tangsten.svg').default} />,
+                diamond:<div> <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/>
+                <img src={require('../../assets/img/diamond.svg').default}  style={{ opacity: 1 }}/></div>
+            })
+        }
+    }
+
     render () {
         return (
             <div>
@@ -531,12 +602,13 @@ class Demo extends React.Component {
                         <div>
                             <div className="content result-header">
                                 <div className="progress-diamond">
-                                    {(this.state.diamond.length) ? (this.state.diamond) :
+                                    {this.state.diamond}
+                                    {/* {(this.state.diamond.length) ? (this.state.diamond) :
                                     (<div><img src={require('../../assets/img/diamond.svg').default} />
                                         <img src={require('../../assets/img/diamond.svg').default} />
                                         <img src={require('../../assets/img/diamond.svg').default} />
                                         <img src={require('../../assets/img/diamond.svg').default} />
-                                        <img src={require('../../assets/img/diamond.svg').default} /></div>)}
+                                        <img src={require('../../assets/img/diamond.svg').default} /></div>)} */}
                                 </div>
                                 <h1 className="text-center">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
                             </div>
@@ -666,22 +738,20 @@ class Demo extends React.Component {
                                 <Col lg="12" md="12" sm="12" xs="12" className="sub-panel">
                                     <p className="title">YOUR PASSPORT AVATAR</p>
                                     <div className="avatar-section">
-                                        <div className="avatar-panel">
+                                        <div className="avatar-panel" ref={this.componentRef}>
                                             <p className="sub-title">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</p>
                                             <div className="result-image">
                                                 {this.state.resultImage}
                                             </div>
                                             <div className="progress-diamond">
-                                                {(this.state.diamond.length) ? (this.state.diamond) :
-                                                (<div><img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} /></div>)}
+                                                {this.state.diamond}
                                             </div>
                                         </div>
                                     </div>
                                 </Col>
+                                <button onClick={() => this.export()}>
+                                    Export As JPEG
+                                </button>
                             </Row>
                         </div> : ''
                         }
