@@ -649,6 +649,49 @@
                 font-size: 1.35vw;
             }
             .timeline {
+                .line {
+                    height: 4vw;
+                    background-color: #27a6c3;
+                    border-radius: 0.5vw;
+                    display: flex;
+                    .line-circle {
+                        display: inline-block;
+                        width: 19.99%;
+                        text-align: center;
+                        position: relative;
+                        padding: 0.5vw;
+                        .circle-in {
+                            background-color: #041623;
+                            height: 5vw;
+                            bottom: -0.5vw;
+                            left: calc(20% + 3vw);
+                            width: 5vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 101;
+                        }
+                        .circle-out {
+                            background-color: #27a6c3;
+                            height: 6vw;
+                            bottom: -1vw;
+                            left: calc(20% + 2.5vw);
+                            width: 6vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 100;
+                        }
+                        .circle-select {
+                            background-color: #27a6c3;
+                            height: 4vw;
+                            bottom: 0vw;
+                            left: calc(20% + 3.5vw);
+                            width: 4vw;
+                            position: absolute;
+                            border-radius: 50%;
+                            z-index: 102;
+                        }
+                    }
+                }
                 .line-graph {
                     display: flex;
                     .one-hand {
