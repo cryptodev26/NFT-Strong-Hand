@@ -667,18 +667,10 @@ class Demo extends React.Component {
                                     <p className="title">YOUR PASSPORT AVATAR</p>
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
-                                            <p className="sub-title">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</p>
-                                            <div className="result-image">
-                                                {this.state.resultImage}
-                                            </div>
-                                            <div className="progress-diamond">
-                                                {(this.state.diamond.length) ? (this.state.diamond) :
-                                                (<div><img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} />
-                                                    <img src={require('../../assets/img/diamond.svg').default} /></div>)}
-                                            </div>
+                                            {(this.state.walletValue > 0 && this.state.walletValue < 101) 
+                                            ? <img src={require('../../assets/img/nfts/' + this.state.walletValue + '.jpg').default} />
+                                            : <img src={require('../../assets/img/nfts/0.jpg').default} />
+                                            }
                                         </div>
                                     </div>
                                 </Col>
