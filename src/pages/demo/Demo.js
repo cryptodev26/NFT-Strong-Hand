@@ -23,9 +23,12 @@ class Demo extends React.Component {
     constructor () {
         super();
         this.state = {
-            walletAddress               : '0x0000000000000000000000000',
-            button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
-                                            I AM READY TO FIND OUT</Button>,
+            // walletAddress               : '0x0000000000000000000000000',
+            walletAddress               : '',
+            // button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
+            //                                 I AM READY TO FIND OUT</Button>,
+            button                      : <Button variant="outline-primary" onClick={()=> this.connect()}>
+                                             Please connect wallet</Button>,
             start                       : true,
             resultImage                 : '',
             diamond                     : [],
@@ -404,14 +407,18 @@ class Demo extends React.Component {
             await window.ethereum.enable()
             const accounts = await window.web3.eth.getAccounts()
             this.setState({
-                walletAddress: accounts[0]
+                walletAddress   : accounts[0],
+                button          : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
+                                            I AM READY TO FIND OUT</Button>,
             })
 
         } else if(window.web3) {
             window.web3 = new Web3(window.web3.currentProvider) 
             const accounts = await window.web3.eth.getAccounts()
             this.setState({
-                walletAddress: accounts[0]
+                walletAddress   : accounts[0],
+                button          : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
+                I AM READY TO FIND OUT</Button>,
             })
         } else {
             window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
