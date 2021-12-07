@@ -664,7 +664,15 @@ class Demo extends React.Component {
                             </Row>
                             <Row className="content passport">
                                 <Col lg="12" md="12" sm="12" xs="12" className="sub-panel">
-                                    <p className="title">YOUR PASSPORT AVATAR</p>
+                                    <div className="caption">
+                                        <p className="title">YOUR PASSPORT AVATAR</p>
+                                        <div className="share">
+                                            <a href="https://twitter.com">
+                                                <img src={require('../../assets/img/twitter.png').default} />
+                                                <span className="share-caption">&nbsp;SHARE RESULT ON TWITTER</span>
+                                            </a>
+                                        </div>
+                                    </div>
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
                                             {(this.state.walletValue > 0 && this.state.walletValue < 101) 
