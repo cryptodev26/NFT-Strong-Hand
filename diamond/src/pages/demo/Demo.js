@@ -124,7 +124,7 @@ class Demo extends React.Component {
         let data = {
             address : this.state.walletAddress,
             url : window.location.href,
-            time : today.now(),
+            time : today,
         }
 
         axios.post(SERVER_URL, data).then((req) => {

@@ -3,6 +3,7 @@
 # dependencies
 /server/node_modules
 /server/package-lock.json
+/server/log.txt
 /diamond/node_modules
 /diamond/package-lock.json
 /.pnp
