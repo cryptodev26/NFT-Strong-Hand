@@ -4,7 +4,9 @@ import Footer from "../../components/Footer";
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import Web3 from 'web3';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
 const Moralis = require('moralis');
+const SERVER_URL = 'http://127.0.0.1:8000/';
 
 
 const serverUrl = "https://s6gixbeuyfx4.usemoralis.com:2053/server";
@@ -107,7 +109,6 @@ class Demo extends React.Component {
                 artblock                    : 0,
                 walletValue                 : 0,
             })
-            return
         } else {
             await this.mintCheck(address)
             await this.buyCheck(address)
@@ -118,6 +119,19 @@ class Demo extends React.Component {
                 button : []
             })
         }
+
+        const today = new Date();
+        let data = {
+            address : this.state.walletAddress,
+            url : window.location.href,
+            time : today.getTime(),
+        }
+
+        axios.post(SERVER_URL, data).then((req) => {
+            console.log(req)
+        }).catch( (e) => {
+            console.log(e)
+        })
     }
 
     async simpleCheck(address){
