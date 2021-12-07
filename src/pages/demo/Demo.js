@@ -30,6 +30,7 @@ class Demo extends React.Component {
             button                      : <Button variant="outline-primary" onClick={()=> this.connect()}>
                                              Please connect wallet</Button>,
             start                       : true,
+            error                       : '',
             resultImage                 : '',
             diamond                     : [],
             mintNumber                  : 0,
@@ -75,9 +76,13 @@ class Demo extends React.Component {
         if (!checkstate){
             this.setState({
                 button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
-                                                I AM READY TO FIND OUT</Button>,
+                                                ERROR</Button>,
                 resultImage                 : <img src={require('../../assets/img/paper.svg').default} />,
-                start                       : false,  
+                start                       : true,  
+                error                       : <div>
+                                                    <p className="text-center">Error occured during calculation</p>
+                                                    <p className="text-center">Your wallet is empty</p>
+                                                </div>,
                 diamond                     : [],
                 mintNumber                  : 0,
                 mintNumberContainer         : [],
@@ -683,7 +688,7 @@ class Demo extends React.Component {
                                     </div>
                                 </Col>
                             </Row>
-                        </div> : ''
+                        </div> : <div>{this.state.error}</div>
                         }
                     </div>
                     <hr />
