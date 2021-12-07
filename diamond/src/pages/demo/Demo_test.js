@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { Container, Button, Row, Col } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Container, Button, Row, Col, FormControl } from 'react-bootstrap';
 import Web3 from 'web3';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 const Moralis = require('moralis');
 const SERVER_URL = 'http://127.0.0.1:8000/';
+
 
 
 const serverUrl = "https://s6gixbeuyfx4.usemoralis.com:2053/server";
@@ -22,7 +22,7 @@ const handTypes = [
     'TUNGSTEN HANDS'
 ]
 
-class Demo extends React.Component {
+class Test extends React.Component {
     constructor () {
         super();
         this.state = {
@@ -70,6 +70,11 @@ class Demo extends React.Component {
     }
 
     async checkAll(address){
+
+        if (address == ''){
+            alert("please check address")
+            return
+        }
         address = address.toLowerCase()
         this.setState({
             button : <Button variant="outline-primary">Please wait...</Button>
@@ -509,26 +514,24 @@ class Demo extends React.Component {
     }
 
     render () {
+
+        const handlewalletAddress =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              walletAddress : addLabel
+            }) 
+          }
+
         return (
             <div>
                 <Container>
                     <Header />
                     <div className="demo">
                         <div className="content page-header">
-                            <div className="follow">
-                                <a href="https://twitter.com" target="_blank">
-                                    <img src={require('../../assets/img/twitter.png').default} />
-                                </a>
-                                <span className="title">&nbsp;FOLLOW US NOT TO MISS LAUNCH</span>
-                            </div>
-                            <div className="connect">
-                                <Button variant="outline-primary" className="title" onClick={()=>this.connect()}>Connect Wallet</Button>
-                                <Link to="/test" className='active'>Demo Test</Link>
-                            </div>
                         </div>
                         <div className="content">
                             <p className="title">
-                            Please connect Wallet and click below to test out the algorithm
+                            Please input wallet address and click below to test out the algorithm
                             </p>
                         </div>
                         <div className="content collector">
@@ -602,14 +605,19 @@ class Demo extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="content wallet">
-                            <p className="title text-center">
-                            {this.state.walletAddress ? ('Wallet connected: ' + this.state.walletAddress) 
-                                : ('Wallet not connected')}
-                            </p>
-                        </div>
+
                         <div className="content text-center find-out">
-                            {this.state.button}
+                            <div className = "row">
+                                <div className = "col-3"></div>
+                                <div className = "col-5">
+                                    <FormControl   placeholder="Wallet Address"  aria-label="Username" aria-describedby="basic-addon1"  defaultValue = {this.state.walletAddress} onChange = {handlewalletAddress} />
+                                </div>
+                                <div className = "col-1">
+                                    <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>Calculate</Button>
+                                </div>
+                                <div className = "col-3"></div>
+                            </div>
+                            
                         </div>
                         { !this.state.start ?
                         <div>
@@ -778,4 +786,4 @@ class Demo extends React.Component {
     }
 }
 
-export default Demo;
+export default Test;
