@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Web3 from 'web3';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { CircleLoader, ClipLoader, MoonLoader } from "react-spinners";
+
 const Moralis = require('moralis');
 const SERVER_URL = 'http://127.0.0.1:8000/';
 
@@ -72,7 +74,9 @@ class Demo extends React.Component {
     async checkAll(address){
         address = address.toLowerCase()
         this.setState({
-            button : <Button variant="outline-primary">Please wait...</Button>
+            button : <Button variant="outline-primary">Please wait...
+                        <ClipLoader loading={true} color={"white"} css={{ marginLeft: "1rem", marginBottom: "-0.2rem"}} size={"1.25rem"} />
+                    </Button>
         })
 
         console.log("Checking Address... ", address)
