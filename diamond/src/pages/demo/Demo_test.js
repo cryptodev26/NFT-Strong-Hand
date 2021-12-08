@@ -5,6 +5,8 @@ import { Container, Button, Row, Col, FormControl } from 'react-bootstrap';
 import Web3 from 'web3';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { ClipLoader } from "react-spinners";
+
 const Moralis = require('moralis');
 const SERVER_URL = 'http://127.0.0.1:8000/';
 
@@ -30,8 +32,7 @@ class Test extends React.Component {
             walletAddress               : '',
             // button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
             //                                 I AM READY TO FIND OUT</Button>,
-            button                      : <Button variant="outline-primary" onClick={()=> this.connect()}>
-                                             Please connect wallet</Button>,
+            button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>Calculate</Button>,
             start                       : true,
             error                       : '',
             resultImage                 : '',
@@ -77,7 +78,9 @@ class Test extends React.Component {
         }
         address = address.toLowerCase()
         this.setState({
-            button : <Button variant="outline-primary">Please wait...</Button>
+            button : <Button variant="outline-primary">Please wait...
+                        <ClipLoader loading={true} color={"white"} css={{ marginLeft: "1rem", marginBottom: "-0.2rem"}} size={"1.25rem"} />
+                    </Button>
         })
 
         console.log("Checking Address... ", address)
@@ -608,14 +611,10 @@ class Test extends React.Component {
 
                         <div className="content text-center find-out">
                             <div className = "row">
-                                <div className = "col-3"></div>
-                                <div className = "col-5">
-                                    <FormControl   placeholder="Wallet Address"  aria-label="Username" aria-describedby="basic-addon1"  defaultValue = {this.state.walletAddress} onChange = {handlewalletAddress} />
+                                <div className = "col-12">
+                                    <FormControl   placeholder="Wallet Address"  aria-label="Username" aria-describedby="basic-addon1"  defaultValue = {this.state.walletAddress} onChange = {handlewalletAddress}  style={{display: 'inline-block', width: '20%', marginRight: '1rem'}}/>
+                                    {this.state.button}
                                 </div>
-                                <div className = "col-1">
-                                    <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>Calculate</Button>
-                                </div>
-                                <div className = "col-3"></div>
                             </div>
                             
                         </div>
