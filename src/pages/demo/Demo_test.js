@@ -153,7 +153,7 @@ class Test extends React.Component {
             limit: "10000" 
         };
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
-
+        
         if (transfersNFT.result.length == 0){        
             checkstate = false
         }
@@ -172,30 +172,41 @@ class Test extends React.Component {
         };
         console.log("   starting to check Mint transactions...\n")
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
+
         transfersNFT = transfersNFT.result
-        console.log("      Number of Transactions that related with NFT...\n", transfersNFT.length)
+
+        transfersNFT = transfersNFT.reverse()
+
+
+
         for (let i = 0; i < transfersNFT.length; i++) {
             if (transfersNFT[i].from_address === "0x0000000000000000000000000000000000000000"){
-                mint_array.push({data : transfersNFT[i], i})
+                mint_array.unshift({data : transfersNFT[i], i})
             }
         }
+        
         if (mint_array !== []){
             console.log("================   Mint Check  =======================")
             console.log("      NFT minted : ", mint_array.length)
+            console.log(mint_array)
             for (let i = 0; i < mint_array.length; i++) {
                 for (let j = mint_array[i].i + 1; j < transfersNFT.length; j++) {
                     if(mint_array[i].data.token_address == transfersNFT[j].token_address && mint_array[i].data.token_id == transfersNFT[j].token_id && transfersNFT[j].from_address == address){
+                        
                         if (Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(mint_array[i].data.block_timestamp) / 1000 < 86400 * 7){
                             mint_to_sale_days.push(Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(mint_array[i].data.block_timestamp) / 1000)
                         }
+
                         if(mint_array[i].data.value > transfersNFT[j].value){
                             sold_below_mint = sold_below_mint + 1
                         }
+                        
                         mint_sold = mint_sold + 1
                         break
                     }
                 }
             }
+            
     
             console.log("      NFT Mint_Sold : ", mint_sold)
             console.log("      NFT Mint_Week_Sold : ", mint_to_sale_days.length)
@@ -270,9 +281,10 @@ class Test extends React.Component {
         console.log("==============  Check Buy Transaction  ===============")
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
         transfersNFT = transfersNFT.result
+        transfersNFT = transfersNFT.reverse()
         for (let i = 0; i < transfersNFT.length; i++) {
             if (transfersNFT[i].to_address === address && transfersNFT[i].value !== '0'){
-            buy_array.push({data : transfersNFT[i], i})
+            buy_array.unshift({data : transfersNFT[i], i})
             }
         }
 
@@ -428,7 +440,7 @@ class Test extends React.Component {
             limit: "10000" 
         }
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
-        transfersNFT = transfersNFT.result
+        transfersNFT = transfersNFT.result.reverse()
         for (let i = 0; i < transfersNFT.length; i++) {
             if (transfersNFT[i].from_address === "0x0000000000000000000000000000000000000000"||(transfersNFT[i].to_address === address && transfersNFT[i].value !== '0')){
                 let walletage = Math.round((Math.round((new Date()).getTime() / 1000) - (Date.parse(transfersNFT[i].block_timestamp) / 1000)) / 86400)
