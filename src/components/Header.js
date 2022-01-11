@@ -29,7 +29,7 @@ class Header extends React.Component {
                         <li>HAND</li>
                         <li>PASSPORT</li>
                     </ul>
-                    <img src={require('../assets/img/diamond.svg').default} />
+                    <img src={require('../assets/img/diamond.svg').default} alt = "..."/>
                 </div>
                 <div className="links">
                     <div className="toggle-collapse">

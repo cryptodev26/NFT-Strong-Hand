@@ -13,8 +13,8 @@ class Home extends React.Component {
                     <Header />
                     <div className="home">
                         <p className="content page-header">
-                            <a href="https://twitter.com" target="_blank">
-                                <img src={require('../../assets/img/twitter.png').default} />
+                            <a href="https://twitter.com" target="_blank"  rel="noreferrer">
+                                <img src={require('../../assets/img/twitter.png').default} alt = "..."/>
                             </a>
                             <span className="title">&nbsp;FOLLOW US NOT TO MISS LAUNCH</span>
                         </p>

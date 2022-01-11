@@ -10,8 +10,8 @@ class Footer extends React.Component {
                     LAUNCHING IN DECEMBER! STAY TUNED AND FOLLOW OUR TWITTER
                 </p>
                 <div>
-                    <a href="https://twitter.com" target="_blank">
-                        <img src={require('../assets/img/twitter.png').default} />
+                    <a href="https://twitter.com" target="_blank" rel="noreferrer">
+                        <img src={require('../assets/img/twitter.png').default} alt = "..."/>
                     </a>
                 </div>
             </div>

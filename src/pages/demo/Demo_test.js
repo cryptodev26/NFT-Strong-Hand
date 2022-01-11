@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Container, Button, Row, Col, FormControl } from 'react-bootstrap';
 import Web3 from 'web3';
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+//import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import { ClipLoader } from "react-spinners";
 
@@ -15,7 +15,7 @@ const SERVER_URL = 'http://127.0.0.1:8000/';
 const serverUrl = "https://s6gixbeuyfx4.usemoralis.com:2053/server";
 const appId = "PISnhV8BumWtmODGXXq6xyhwf62lA3YZqLHra34j";
 
-const etherWeb3    = new Web3("https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161");
+//const etherWeb3    = new Web3("https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161");
 const handTypes = [
     'PAPER HANDS',
     'WEAK HANDS',
@@ -72,7 +72,7 @@ class Test extends React.Component {
 
     async checkAll(address){
 
-        if (address == ''){
+        if (address === ''){
             alert("please check address")
             return
         }
@@ -91,7 +91,7 @@ class Test extends React.Component {
             this.setState({
                 button                      : <Button variant="outline-primary" onClick={()=> this.checkAll(this.state.walletAddress)}>
                                                 ERROR</Button>,
-                resultImage                 : <img src={require('../../assets/img/paper.svg').default} />,
+                resultImage                 : <img src={require('../../assets/img/paper.svg').default} alt= "..."/>,
                 start                       : true,  
                 error                       : <div>
                                                     <p className="text-center">Error occured during calculation</p>
@@ -154,7 +154,7 @@ class Test extends React.Component {
         };
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
         
-        if (transfersNFT.result.length == 0){        
+        if (transfersNFT.result.length === 0){        
             checkstate = false
         }
         return checkstate
@@ -174,33 +174,32 @@ class Test extends React.Component {
         let transfersNFT = await Moralis.Web3API.account.getNFTTransfers(options);
 
         transfersNFT = transfersNFT.result
+        console.log("total NFT transactions\n",transfersNFT)
 
         transfersNFT = transfersNFT.reverse()
 
 
 
         for (let i = 0; i < transfersNFT.length; i++) {
-            if (transfersNFT[i].from_address === "0x0000000000000000000000000000000000000000"){
+            if (transfersNFT[i].from_address === "0x0000000000000000000000000000000000000000" && transfersNFT[i].value > 0){
                 mint_array.unshift({data : transfersNFT[i], i})
             }
         }
         
         if (mint_array !== []){
             console.log("================   Mint Check  =======================")
-            console.log("      NFT minted : ", mint_array.length)
+            console.log("      NFT minted : ", mint_array.length, "(from address : 0 address, to address : this wallet, Eth value is bigger than 0)")
             console.log(mint_array)
+
             for (let i = 0; i < mint_array.length; i++) {
                 for (let j = mint_array[i].i + 1; j < transfersNFT.length; j++) {
-                    if(mint_array[i].data.token_address == transfersNFT[j].token_address && mint_array[i].data.token_id == transfersNFT[j].token_id && transfersNFT[j].from_address == address){
-                        
+                    if(mint_array[i].data.token_address === transfersNFT[j].token_address && mint_array[i].data.token_id === transfersNFT[j].token_id && transfersNFT[j].from_address === address && transfersNFT[j].value > 0){
                         if (Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(mint_array[i].data.block_timestamp) / 1000 < 86400 * 7){
                             mint_to_sale_days.push(Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(mint_array[i].data.block_timestamp) / 1000)
                         }
-
                         if(mint_array[i].data.value > transfersNFT[j].value){
                             sold_below_mint = sold_below_mint + 1
                         }
-                        
                         mint_sold = mint_sold + 1
                         break
                     }
@@ -283,13 +282,14 @@ class Test extends React.Component {
         transfersNFT = transfersNFT.result
         transfersNFT = transfersNFT.reverse()
         for (let i = 0; i < transfersNFT.length; i++) {
-            if (transfersNFT[i].to_address === address && transfersNFT[i].value !== '0'){
+            if (transfersNFT[i].to_address === address && transfersNFT[i].value > 0){
             buy_array.unshift({data : transfersNFT[i], i})
             }
         }
+        console.log("bought_count : ", buy_array.length , "(from address not 0 address, to address is this address, value bigger than 0)")
+        console.log('all NFT Buy transactions', buy_array)
 
-        if (buy_array == []){
-
+        if (buy_array === []){
             this.setState({
                 buynumber : 0 ,
                 buynumberContainer : [],
@@ -305,7 +305,7 @@ class Test extends React.Component {
         } else {
             for (let i = 0; i < buy_array.length; i++) {
                 for (let j = buy_array[i].i + 1; j < transfersNFT.length; j++) {
-                    if(buy_array[i].data.token_address === transfersNFT[j].token_address && buy_array[i].data.token_id === transfersNFT[j].token_id && transfersNFT[j].from_address === address){
+                    if(buy_array[i].data.token_address === transfersNFT[j].token_address && buy_array[i].data.token_id === transfersNFT[j].token_id && transfersNFT[j].from_address === address && transfersNFT[j].value > 0){
                         if (Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(buy_array[i].data.block_timestamp) / 1000 < 86400 * 7){
                         buy_to_sale_days.push(Date.parse(transfersNFT[j].block_timestamp) / 1000 - Date.parse(buy_array[i].data.block_timestamp) / 1000)
                         } 
@@ -324,13 +324,13 @@ class Test extends React.Component {
                 rate_mint_week_sold : ((buy_to_sale_days.length/buy_array.length) * 100).toFixed(2),
                 rate_below_mint     : ((sold_below_buy / buy_array.length) * 100).toFixed(2)
             }
-            console.log("bought_count : ", result.bought_count)
+            
             console.log("buy_sold : ", buy_sold)
             console.log("buy_sold_week : ", buy_to_sale_days.length)
-            console.log("sold_below_buy : ", result.bought_count, "\n")
+            console.log("sold_below_buy : ", sold_below_buy, "\n")
             console.log("rate_mint_sold : ", result.rate_mint_sold)
-            console.log("rate_mint_week_sold : ", buy_to_sale_days.length)
-            console.log("rate_below_mint : ", result.bought_count, "\n")
+            console.log("rate_mint_week_sold : ", result.rate_mint_week_sold)
+            console.log("rate_below_mint : ", result.rate_below_mint, "\n")
     
     
             let buynumberContainer = [], 
@@ -359,9 +359,7 @@ class Test extends React.Component {
                 buySoldWeek : result.rate_below_mint,
                 buySoldWeekContainer : buySoldWeekContainer
             })
-        }
-
-        
+        } 
     }
 
     async holdCheck(address){
@@ -473,27 +471,27 @@ class Test extends React.Component {
         let diamond = []
         for(let i = 0; i < 5; i ++ ) {
             if(i < Math.ceil(value / 20)) {
-                diamond.push(<img src={require('../../assets/img/diamond.svg').default} style={{ opacity : 1 }} />)
+                diamond.push(<img src={require('../../assets/img/diamond.svg').default} style={{ opacity : 1 }} alt= "..."/>)
             } else {
-                diamond.push(<img src={require('../../assets/img/diamond.svg').default} />)
+                diamond.push(<img src={require('../../assets/img/diamond.svg').default} alt= "..."/>)
             }
         }
         let resultImage = ''
         let timeLineHtml = document.getElementsByClassName('circle-select');
         if(value <= 100 && value >= 80) {
-            resultImage = <img src={require('../../assets/img/tangsten.svg').default} />
+            resultImage = <img src={require('../../assets/img/tangsten.svg').default} alt= "..."/>
             timeLineHtml[4].style.display = 'block'
         } else if(value < 80 && value >= 60) {
-            resultImage = <img src={require('../../assets/img/diamondhand.svg').default} />
+            resultImage = <img src={require('../../assets/img/diamondhand.svg').default} alt= "..."/>
             timeLineHtml[3].style.display = 'block'
         } else if (value < 60 && value >= 40) {
-            resultImage = <img src={require('../../assets/img/stronghand.svg').default} />
+            resultImage = <img src={require('../../assets/img/stronghand.svg').default} alt= "..."/>
             timeLineHtml[2].style.display = 'block'
         } else if(value < 40 && value >= 20) {
-            resultImage = <img src={require('../../assets/img/weakhand.svg').default} />
+            resultImage = <img src={require('../../assets/img/weakhand.svg').default} alt= "..."/>
             timeLineHtml[1].style.display = 'block'
         } else {
-            resultImage = <img src={require('../../assets/img/paper.svg').default} />
+            resultImage = <img src={require('../../assets/img/paper.svg').default} alt= "..."/>
             timeLineHtml[0].style.display = 'block'
         }
         this.setState({
@@ -584,35 +582,35 @@ class Test extends React.Component {
                                 <div className="line-graph">
                                     <div className="one-hand">
                                         <div className="hand-image">
-                                            <img src={require('../../assets/img/paper.svg').default} />
+                                            <img src={require('../../assets/img/paper.svg').default} alt= "..."/>
                                         </div>
                                         <div className="hand-title">PAPER-HANDS</div>
                                         <div className="description">"I flip... mostly at a loss"</div>
                                     </div>
                                     <div className="one-hand">
                                         <div className="hand-image">
-                                            <img src={require('../../assets/img/weakhand.svg').default} />
+                                            <img src={require('../../assets/img/weakhand.svg').default} alt= "..."/>
                                         </div>
                                         <div className="hand-title">WEAK-HANDS</div>
                                         <div className="description">"I sell when I need liq... which is almost always"</div>
                                     </div>
                                     <div className="one-hand">
                                         <div className="hand-image">
-                                            <img src={require('../../assets/img/stronghand.svg').default} />
+                                            <img src={require('../../assets/img/stronghand.svg').default} alt= "..."/>
                                         </div>
                                         <div className="hand-title">STRONG-HANDS</div>
                                         <div className="description">"I hold... but I do take profits when I can"</div>
                                     </div>
                                     <div className="one-hand">
                                         <div className="hand-image">
-                                            <img src={require('../../assets/img/diamondhand.svg').default} />
+                                            <img src={require('../../assets/img/diamondhand.svg').default} alt= "..."/>
                                         </div>
                                         <div className="hand-title">DIAMOND-HANDS</div>
                                         <div className="description">"I hold... even in the brutal bear market"</div>
                                     </div>
                                     <div className="one-hand">
                                         <div className="hand-image">
-                                            <img src={require('../../assets/img/tangsten.svg').default} />
+                                            <img src={require('../../assets/img/tangsten.svg').default} alt= "..."/>
                                         </div>
                                         <div className="hand-title">TUNGSTEN-HANDS</div>
                                         <div className="description">"I... am either ultimate chad or just lost my ledger pass phrase"</div>
@@ -635,11 +633,11 @@ class Test extends React.Component {
                             <div className="content result-header">
                                 <div className="progress-diamond">
                                     {(this.state.diamond.length) ? (this.state.diamond) :
-                                    (<div><img src={require('../../assets/img/diamond.svg').default} />
-                                        <img src={require('../../assets/img/diamond.svg').default} />
-                                        <img src={require('../../assets/img/diamond.svg').default} />
-                                        <img src={require('../../assets/img/diamond.svg').default} />
-                                        <img src={require('../../assets/img/diamond.svg').default} /></div>)}
+                                    (<div><img src={require('../../assets/img/diamond.svg').default} alt= "..."/>
+                                        <img src={require('../../assets/img/diamond.svg').default} alt= "..."/>
+                                        <img src={require('../../assets/img/diamond.svg').default} alt= "..."/>
+                                        <img src={require('../../assets/img/diamond.svg').default} alt= "..."/>
+                                        <img src={require('../../assets/img/diamond.svg').default} alt= "..."/></div>)}
                                 </div>
                                 <h1 className="text-center">{handTypes[Math.floor(this.state.walletValue / 20)] ? handTypes[Math.floor(this.state.walletValue / 20)] : ''} ({this.state.walletValue}/100)</h1>
                             </div>
@@ -771,7 +769,7 @@ class Test extends React.Component {
                                         <p className="title">YOUR PASSPORT AVATAR</p>
                                         <div className="share">
                                             <a href="https://twitter.com">
-                                                <img src={require('../../assets/img/twitter.png').default} />
+                                                <img src={require('../../assets/img/twitter.png').default} alt= "..."/>
                                                 <span className="share-caption">&nbsp;SHARE RESULT ON TWITTER</span>
                                             </a>
                                         </div>
@@ -779,8 +777,8 @@ class Test extends React.Component {
                                     <div className="avatar-section">
                                         <div className="avatar-panel">
                                             {(this.state.walletValue > 0 && this.state.walletValue < 101) 
-                                            ? <img src={require('../../assets/img/nfts/' + this.state.walletValue + '.jpg').default} />
-                                            : <img src={require('../../assets/img/nfts/0.jpg').default} />
+                                            ? <img src={require('../../assets/img/nfts/' + this.state.walletValue + '.jpg').default} alt= "..."/>
+                                            : <img src={require('../../assets/img/nfts/0.jpg').default} alt= "..."/>
                                             }
                                         </div>
                                     </div>

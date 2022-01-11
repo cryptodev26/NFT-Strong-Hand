@@ -6,7 +6,7 @@ import Home from './pages/demo/Home';
 import Demo from './pages/demo/Demo';
 import Test from './pages/demo/Demo_test';
 import Contact from './pages/demo/Contact';
-import Welcome from './pages/dashboard/Welcome';
+
 
 class App extends React.Component {
   render () {

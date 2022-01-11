@@ -12,11 +12,11 @@ class Welcome extends React.Component {
                                 <strong>DIAMOND<br />HAND<br />PASSPORT
                                 </strong>
                             </span>
-                            <img src={require('../../assets/img/diamond.svg').default} />
+                            <img src={require('../../assets/img/diamond.svg').default} alt = "..."/>
                         </Col>
                         <Col lg={6} md={6} sm={6} xs={6} className="follow">
                             <a href="https://twitter.com">
-                                <img src={require('../../assets/img/twitter.png').default} />
+                                <img src={require('../../assets/img/twitter.png').default} alt = "..."/>
                                 <strong>FOLLOW US<br />NOT TO MISS<br />LAUNCH</strong>
                             </a>
                         </Col>
@@ -33,30 +33,30 @@ class Welcome extends React.Component {
                                 <strong>WHAT KIND OF COLLECTOR HANDS DO YOU HAVE?</strong>
                             </p>
                             <div className="timeline">
-                                <img src={require('../../assets/img/timeline.svg').default} width="90%" />
+                                <img src={require('../../assets/img/timeline.svg').default} width="90%" alt = "..."/>
                                 <div class="timeline-row">
                                     <div className="time-one">
-                                        <img src={require('../../assets/img/paper.svg').default} />
+                                        <img src={require('../../assets/img/paper.svg').default} alt = "..."/>
                                         <h3>Paper-HANDS</h3>
                                         <p>"I flip... mostly at a loss."</p>
                                     </div>
                                     <div className="time-one">
-                                        <img src={require('../../assets/img/weakhand.svg').default} />
+                                        <img src={require('../../assets/img/weakhand.svg').default} alt = "..."/>
                                         <h3>WEAK-HANDS</h3>
                                         <p>"I sell when I need liq... which is almost always."</p>
                                     </div>
                                     <div className="time-one">
-                                        <img src={require('../../assets/img/stronghand.svg').default} />
+                                        <img src={require('../../assets/img/stronghand.svg').default} alt = "..."/>
                                         <h3>Strong-HANDS</h3>
                                         <p>"I hold... but I do take profits when I can."</p>
                                     </div>
                                     <div className="time-one">
-                                        <img src={require('../../assets/img/diamondhand.svg').default} />
+                                        <img src={require('../../assets/img/diamondhand.svg').default} alt = "..."/>
                                         <h3>DIAMOND-HANDS</h3>
                                         <p>"I hold... even in the brutal bear market."</p>
                                     </div>
                                     <div className="time-one">
-                                        <img src={require('../../assets/img/tangsten.svg').default} />
+                                        <img src={require('../../assets/img/tangsten.svg').default} alt = "..."/>
                                         <h3>TUNGSTEN-HANDS</h3>
                                         <p>"I... am either ultimate chad or just lost my ledger pass phrase."</p>
                                     </div>
@@ -127,7 +127,7 @@ class Welcome extends React.Component {
                     </p>
                     <p className="text-center page-footer">
                         <a href="https://twitter.com/@DiamondPassport">
-                            <img src={require('../../assets/img/twitter.png').default} />
+                            <img src={require('../../assets/img/twitter.png').default} alt = "..."/>
                         </a>
                     </p>
                 </Container>
