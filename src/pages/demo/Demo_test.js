@@ -210,14 +210,24 @@ class Test extends React.Component {
             console.log("      NFT Mint_Sold : ", mint_sold)
             console.log("      NFT Mint_Week_Sold : ", mint_to_sale_days.length)
             console.log("      NFT Mint_Below_Sold : ", sold_below_mint, "\n")
-            
+            let result
     
-            let result = {
-            mint_count          : mint_array.length,
-            rate_mint_sold      : ((mint_sold / mint_array.length) * 100).toFixed(2),
-            rate_mint_week_sold : ((mint_to_sale_days.length/mint_array.length) * 100).toFixed(2),
-            rate_below_mint     : ((sold_below_mint / mint_array.length) * 100).toFixed(2)
+            if(mint_array.length === 0){
+                result = {
+                    mint_count          : (0).toFixed(2),
+                    rate_mint_sold      : (0).toFixed(2),
+                    rate_mint_week_sold : (0).toFixed(2),
+                    rate_below_mint     : (0).toFixed(2)
+                }
+            } else {
+                result = {
+                            mint_count          : mint_array.length,
+                            rate_mint_sold      : mint_array((mint_sold / mint_array.length) * 100).toFixed(2),
+                            rate_mint_week_sold : ((mint_to_sale_days.length/mint_array.length) * 100).toFixed(2),
+                            rate_below_mint     : ((sold_below_mint / mint_array.length) * 100).toFixed(2)
+                        }
             }
+             
     
     
             console.log("mint_sold_rate : ", result.rate_mint_sold)
@@ -300,8 +310,6 @@ class Test extends React.Component {
                 buySoldWeek : 0,
                 buySoldWeekContainer : []
             })
-
-
         } else {
             for (let i = 0; i < buy_array.length; i++) {
                 for (let j = buy_array[i].i + 1; j < transfersNFT.length; j++) {
@@ -318,12 +326,24 @@ class Test extends React.Component {
                 }
             }
     
-            let result = {
-                bought_count          : buy_array.length,
-                rate_mint_sold      : ((buy_sold / buy_array.length) * 100).toFixed(2),
-                rate_mint_week_sold : ((buy_to_sale_days.length/buy_array.length) * 100).toFixed(2),
-                rate_below_mint     : ((sold_below_buy / buy_array.length) * 100).toFixed(2)
+            let result 
+
+            if (buy_array.length === 0){
+                result = {
+                    bought_count        : (0).toFixed(2),
+                    rate_mint_sold      : (0).toFixed(2),
+                    rate_mint_week_sold : (0).toFixed(2),
+                    rate_below_mint     : (0).toFixed(2)
+                }
+            } else {
+                result = {
+                    bought_count        : buy_array.length,
+                    rate_mint_sold      : ((buy_sold / buy_array.length) * 100).toFixed(2),
+                    rate_mint_week_sold : ((buy_to_sale_days.length/buy_array.length) * 100).toFixed(2),
+                    rate_below_mint     : ((sold_below_buy / buy_array.length) * 100).toFixed(2)
+                }
             }
+            
             
             console.log("buy_sold : ", buy_sold)
             console.log("buy_sold_week : ", buy_to_sale_days.length)
