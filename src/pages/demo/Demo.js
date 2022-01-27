@@ -219,7 +219,7 @@ class Demo extends React.Component {
             } else {
                 result = {
                             mint_count          : mint_array.length,
-                            rate_mint_sold      : mint_array((mint_sold / mint_array.length) * 100).toFixed(2),
+                            rate_mint_sold      : ((mint_sold / mint_array.length) * 100).toFixed(2),
                             rate_mint_week_sold : ((mint_to_sale_days.length/mint_array.length) * 100).toFixed(2),
                             rate_below_mint     : ((sold_below_mint / mint_array.length) * 100).toFixed(2)
                         }
