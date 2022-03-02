@@ -12,8 +12,8 @@ const SERVER_URL = 'http://127.0.0.1:8000/';
 
 
 
-const serverUrl = "https://s6gixbeuyfx4.usemoralis.com:2053/server";
-const appId = "PISnhV8BumWtmODGXXq6xyhwf62lA3YZqLHra34j";
+const serverUrl = "https://l2xpqkgp20cn.usemoralis.com:2053/server";
+const appId = "ZYDMZACAxoVYw7P65iT0uyY4LMUDL41DPk54fmcJ";
 
 //const etherWeb3    = new Web3("https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161");
 const handTypes = [
